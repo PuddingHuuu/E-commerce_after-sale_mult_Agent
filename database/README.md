@@ -1,141 +1,119 @@
-# 数据库种子数据
+# 数据库与演示数据
 
-本目录用于存放项目数据库脚本和演示数据。
+本目录包含后端使用的 MySQL 表结构和演示数据。
 
 ## 文件
 
 | 文件 | 说明 |
 | --- | --- |
-| `seed_orders_50.sql` | MySQL 8.0 建表 + 50 条演示订单 + 72 条订单明细 |
-| `generate_orders_seed.py` | 种子数据生成器（固定随机种子，可重复生成） |
+| `schema.sql` | 后端完整表结构，包含用户、商家、登录会话、订单、工单、Agent 日志、会话和消息 |
+| `seed_orders_50.sql` | 50 条订单 + 72 条订单明细的 MySQL 种子数据 |
+| `orders_seed_data.json` | 后端启动时自动写入 50 条订单所使用的 JSON 快照 |
+| `generate_orders_seed.py` | 同时生成 SQL 和 JSON 的订单种子生成器 |
 
-## 订单数据说明
+## 数据表
 
-- **买家用户 ID：`10001`**
-  - 当前用户/客户表尚未建立，所有订单先统一归属演示买家 `10001`
-  - `orders.user_id` 暂不建外键，等用户体系完成后补充
-- **订单数：50**
-- **明细数：72**
-- **金额单位：人民币元**
-- **时间范围：2026-09-03 ~ 2026-11-13**
-- **商品类型：** 数码 3C、家居日用、服饰运动、美妆个护、食品、母婴等常见电商商品
-- **覆盖状态：** 待付款、待发货、运输中、已签收、已完成、已取消、退款中
-- **收货地址和手机号均为虚构演示数据**
-
-## 表结构
-
-### `orders`
-
-订单主表，包含订单状态、支付状态、履约状态、金额快照、买家备注、收货人快照、物流信息和关键时间节点。
-
-重点字段：
-
-- `order_no`：业务订单号，唯一索引
-- `user_id`：买家 ID
-- `order_status`：订单生命周期状态
-- `payment_status`：支付状态
-- `shipping_status`：履约状态
-- `after_sale_status`：售后状态缓存，正式数据以工单表为准
-- `goods_amount / discount_amount / freight_amount / payable_amount / paid_amount / refund_amount`
-- `receiver_*`：收货人信息快照
-- `paid_at / shipped_at / received_at / completed_at / cancelled_at / created_at / updated_at`
-
-### `order_items`
-
-订单商品明细表。商品名称、SKU 规格和成交单价均作为下单快照保存，后续商品信息变更不会影响历史订单。
-
-## 导入方式
-
-脚本已经包含数据库创建和选择语句，**不需要提前在 IDE 中选中数据库**：
-
-```sql
-CREATE DATABASE IF NOT EXISTS after_sale_agent
-  DEFAULT CHARACTER SET utf8mb4
-  COLLATE utf8mb4_0900_ai_ci;
-
-USE after_sale_agent;
+```text
+users                 三端账号（consumer / platform / merchant）
+auth_sessions         72 小时登录会话，只保存 token 哈希
+merchants             商家店铺资料
+orders                订单主表；演示买家 user_id = 10001
+order_items           订单商品明细快照
+tickets               售后工单
+ticket_agent_runs     分类 / 检索 / 回复 / 转人工执行日志
+conversations         人工会话，仅转人工后创建
+conversation_messages 消费者、平台客服、商家、系统消息
 ```
 
-如果希望使用其他数据库名，直接修改脚本顶部的 `CREATE DATABASE` 和 `USE` 两处即可。
+关系：
 
-### 方式一：命令行
+```text
+users 1 ── N conversations
+users 1 ── N orders
+users 1 ── N tickets
+
+conversations 1 ── N tickets
+conversations 1 ── N conversation_messages
+conversations 0..1 ── 1 merchants（受邀商家）
+
+tickets 1 ── N ticket_agent_runs
+```
+
+### 工单和会话
+
+- 一个会话可以关联多张工单
+- 每张工单聚焦一个售后问题
+- 同一用户再次转人工时，会优先复用已有的人工会话
+- 商家可以看到会话消息，但后端不会向商家返回任何工单数据
+
+## 演示账号
+
+后端首次启动会自动创建：
+
+| 角色 | 账号 | 密码 |
+| --- | --- | --- |
+| 消费者 | `13812345678` | `Demo1234` |
+| 平台客服 | `agent01` | `Platform1234` |
+| 商家 | `merchant01` | `Merchant1234` |
+
+演示消费者 ID 为 `10001`，演示商家 ID 为 `1`。后端会自动给所有 50 条订单设置 `user_id=10001`、`shop_id=1`。
+
+账号密码以 Argon2 哈希写入 `users.password_hash`。
+
+## 推荐初始化方式
+
+直接启动后端即可。后端会：
+
+1. 自动 `create_all()` 建表
+2. 自动创建演示账号、商家
+3. 订单表为空时读取 `orders_seed_data.json` 写入 50 条订单
+4. 创建 AI 处理中、转人工、人工处理中、已完成等演示工单和会话
 
 ```bash
+uv run uvicorn app.main:app --reload --port 8000
+```
+
+## 手动导入 MySQL
+
+如果你的 MySQL 需要手动初始化：
+
+1. 在 DataGrip 中执行 `schema.sql`
+2. 再执行 `seed_orders_50.sql`
+3. 启动后端，后端仍会自动补齐演示账号、商家、工单和会话
+
+两个脚本都包含 `CREATE DATABASE IF NOT EXISTS after_sale_agent` 和 `USE after_sale_agent;`，不需要手动选择 schema。
+
+```bash
+mysql -h 192.168.100.132 -P 3306 -u root -p \
+  --default-character-set=utf8mb4 \
+  < database/schema.sql
+
 mysql -h 192.168.100.132 -P 3306 -u root -p \
   --default-character-set=utf8mb4 \
   < database/seed_orders_50.sql
 ```
 
-脚本会：
-
-1. 创建数据库 `after_sale_agent`（如果不存在）
-2. 创建 `orders` 和 `order_items` 表（如果不存在）
-3. 插入 50 条订单
-4. 插入 72 条订单明细
-5. 输出订单数、商品件数、金额合计和状态分布校验结果
-
-### 方式二：DataGrip / IDEA
-
-1. 连接 MySQL 数据源
-2. 打开 `seed_orders_50.sql`
-3. 直接执行整个文件，不需要手动选择 schema
-4. 刷新数据源，展开 `after_sale_agent.orders` 和 `after_sale_agent.order_items` 查看数据
-
-如果执行数据库连接的用户没有 `CREATE DATABASE` 权限，可以手动创建数据库后，把脚本顶部的 `CREATE DATABASE` 语句注释掉再执行。
-
-> 脚本全部使用 `INSERT IGNORE`，同一份数据重复执行不会重复插入订单。
+> 后端通过根目录 `.env` 中的 `DATABASE_URL` 连接数据库。
 >
-> 如需重新生成演示数据，执行 `python database/generate_orders_seed.py`。
+> `schema.sql` 由 SQLAlchemy 模型按 MySQL 方言生成，包含索引和外键；SQLite 测试会自动使用同一套 ORM 模型。
 
-## 与前端演示数据的关系
+## 重新生成订单数据
 
-前端目前仍使用浏览器本地 Mock 数据，尚未连接这个 MySQL 库：
-
-- 前端 Mock 客户 ID 是 `1`
-- 数据库演示买家 ID 是 `10001`
-
-后续接入后端时，需要确定一个统一的演示客户 ID，或者建立前端演示客户到数据库客户 ID 的映射。
-
-## 工单与会话的关系建议
-
-**不建议强制“一个会话只能有一张工单”。**
-
-推荐模型：
-
-```text
-conversations 1 ── N tickets
+```bash
+python database/generate_orders_seed.py
 ```
 
-- 会话是沟通上下文；工单是独立的处理单元
-- 一个会话可以创建 0 张、1 张或多张工单
-- 每张工单聚焦一个客户问题/诉求，例如：
-  - 订单 A 申请退款
-  - 订单 B 换货
-  - 物流异常投诉
-- 同一问题涉及同一订单的多个商品时，可以在一张工单下关联多条 `ticket_items` 明细
-- 不同问题应拆分为不同工单，避免状态、优先级、处理人和 SLA 被混在一起
+会重新生成：
 
-建议工单表至少包含：
+- `seed_orders_50.sql`
+- `orders_seed_data.json`
 
-```text
-ticket_no
-conversation_id  -- 可空，非唯一，允许多张工单来自同一会话
-order_id
-subject          -- 工单主题/问题摘要
-type             -- 售后类型
-description
-priority
-status
-assignee
-source
-created_at / updated_at / resolved_at
+## 本地 SQLite 快速演示
+
+不配置 MySQL 时，可以直接用 SQLite 启动后端：
+
+```bash
+DATABASE_URL="sqlite:///./dev_demo.db" uv run uvicorn app.main:app --reload
 ```
 
-如果后续存在“同一事件导致多个客户问题”的场景，可以增加：
-
-```text
-parent_ticket_id  -- 主工单 / 子工单
-ticket_items      -- 工单关联的订单商品明细
-```
-
-这样既支持“一个会话多个不同问题”，也支持“一张工单覆盖同一问题的多个商品”。
+SQLite 文件已被 `.gitignore` 忽略，仅用于课程演示。

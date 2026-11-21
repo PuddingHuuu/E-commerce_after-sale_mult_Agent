@@ -42,11 +42,12 @@ export function maskPhone(phone: string): string {
   return `${phone.slice(0, 3)}****${phone.slice(-4)}`
 }
 
-export function formatAmount(value: number): string {
+export function formatAmount(value: number | string): string {
+  const numeric = typeof value === 'number' ? value : Number(value || 0)
   return `¥${new Intl.NumberFormat('zh-CN', {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
-  }).format(value)}`
+  }).format(Number.isFinite(numeric) ? numeric : 0)}`
 }
 
 export function truncate(value: string, max = 46): string {

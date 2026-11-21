@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import random
 from datetime import datetime, timedelta
 from pathlib import Path
@@ -10,6 +11,7 @@ BASE_TIME = datetime(2026, 11, 13, 21, 30, 0)
 DEMO_USER_ID = 10001
 SHOP_ID = 1
 OUTPUT = Path(__file__).with_name('seed_orders_50.sql')
+JSON_OUTPUT = Path(__file__).with_name('orders_seed_data.json')
 
 PRODUCTS = [
     {'id': 1001, 'sku': 'DIGI-EAR-001', 'name': '无线降噪耳机', 'spec': '曜石黑 / 旗舰版', 'price': 399.00},
@@ -562,9 +564,79 @@ ORDER BY order_count DESC;
     return ''.join(sql_parts)
 
 
+
+def build_json_payload(orders: list[dict]) -> dict:
+    def iso(value: datetime | None) -> str | None:
+        return value.strftime('%Y-%m-%dT%H:%M:%S') if value else None
+
+    payload = []
+    item_id = 200001
+    for order in orders:
+        receiver = order['receiver']
+        items = []
+        for item in order['items']:
+            product = item['product']
+            items.append({
+                'id': item_id,
+                'product_id': product['id'],
+                'sku_id': product['sku'],
+                'product_name': product['name'],
+                'sku_spec': product['spec'],
+                'unit_price': f"{product['price']:.2f}",
+                'quantity': item['quantity'],
+                'item_amount': f"{item['item_amount']:.2f}",
+                'discount_amount': f"{item['discount_amount']:.2f}",
+                'pay_amount': f"{item['pay_amount']:.2f}",
+                'refund_quantity': item.get('refund_quantity', 0),
+                'refund_amount': f"{item.get('refund_amount', 0):.2f}",
+                'created_at': iso(order['created_at']),
+            })
+            item_id += 1
+        payload.append({
+            'id': order['id'],
+            'order_no': order['order_no'],
+            'user_id': DEMO_USER_ID,
+            'shop_id': SHOP_ID,
+            'order_status': order['status'],
+            'payment_status': order['payment_status'],
+            'shipping_status': order['shipping_status'],
+            'after_sale_status': order['after_sale_status'],
+            'currency': 'CNY',
+            'goods_amount': f"{order['goods_amount']:.2f}",
+            'discount_amount': f"{order['discount_amount']:.2f}",
+            'freight_amount': f"{order['freight_amount']:.2f}",
+            'payable_amount': f"{order['payable_amount']:.2f}",
+            'paid_amount': f"{order['paid_amount']:.2f}",
+            'refund_amount': f"{order['refund_amount']:.2f}",
+            'payment_method': order['payment_method'],
+            'order_source': order['source'],
+            'buyer_note': order['buyer_note'],
+            'cancel_reason': order['cancel_reason'],
+            'receiver_name': receiver[0],
+            'receiver_phone': receiver[1],
+            'receiver_province': receiver[2],
+            'receiver_city': receiver[3],
+            'receiver_district': receiver[4],
+            'receiver_address': receiver[5],
+            'logistics_company': order['logistics_company'],
+            'tracking_no': order['tracking_no'],
+            'item_count': order['item_count'],
+            'paid_at': iso(order['paid_at']),
+            'shipped_at': iso(order['shipped_at']),
+            'received_at': iso(order['received_at']),
+            'completed_at': iso(order['completed_at']),
+            'cancelled_at': iso(order['cancelled_at']),
+            'created_at': iso(order['created_at']),
+            'updated_at': iso(order['updated_at']),
+            'version': 0,
+            'items': items,
+        })
+    return {'orders': payload}
+
 orders = build_orders()
 enrich_items(orders)
 sql = build_sql(orders)
 OUTPUT.write_text(sql, encoding='utf-8')
-print(f'Wrote {OUTPUT}')
+JSON_OUTPUT.write_text(json.dumps(build_json_payload(orders), ensure_ascii=False, indent=2), encoding='utf-8')
+print(f'Wrote {OUTPUT} and {JSON_OUTPUT}')
 print(f'orders={len(orders)}, items={sum(len(order["items"]) for order in orders)}')

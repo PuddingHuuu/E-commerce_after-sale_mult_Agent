@@ -1,25 +1,17 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import type {
-  ConversationStatus,
-  OrderStatus,
-  TicketPriority,
-  TicketStatus,
-} from '@/types'
 import {
-  conversationStatusMeta,
-  orderStatusMeta,
-  priorityMeta,
-  ticketStatusMeta,
+  getConversationStatus,
+  getOrderStatus,
+  getPriority,
+  getTicketStatus,
   type Meta,
 } from '@/utils/labels'
 
-type StatusKind = 'conversation' | 'order' | 'ticket' | 'priority'
-
 const props = withDefaults(
   defineProps<{
-    kind: StatusKind
-    value: ConversationStatus | OrderStatus | TicketStatus | TicketPriority | string
+    kind: 'conversation' | 'order' | 'ticket' | 'priority'
+    value: string
     dot?: boolean
   }>(),
   {
@@ -27,19 +19,11 @@ const props = withDefaults(
   },
 )
 
-const fallback: Meta = { label: '—', tone: 'gray' }
-
 const meta = computed<Meta>(() => {
-  if (props.kind === 'conversation') {
-    return conversationStatusMeta[props.value as ConversationStatus] ?? fallback
-  }
-  if (props.kind === 'order') {
-    return orderStatusMeta[props.value as OrderStatus] ?? fallback
-  }
-  if (props.kind === 'ticket') {
-    return ticketStatusMeta[props.value as TicketStatus] ?? fallback
-  }
-  return priorityMeta[props.value as TicketPriority] ?? fallback
+  if (props.kind === 'conversation') return getConversationStatus(props.value)
+  if (props.kind === 'order') return getOrderStatus(props.value)
+  if (props.kind === 'ticket') return getTicketStatus(props.value)
+  return getPriority(props.value)
 })
 </script>
 
@@ -109,7 +93,7 @@ const meta = computed<Meta>(() => {
 }
 
 .tone-violet {
-  color: #7957d5;
+  color: #7354cd;
   background: #f4f0ff;
   border-color: #e8e0ff;
 }

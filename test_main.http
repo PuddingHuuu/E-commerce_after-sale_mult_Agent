@@ -1,11 +1,37 @@
-# Test your FastAPI endpoints
+@baseUrl = http://127.0.0.1:8000/api/v1
 
-GET http://127.0.0.1:8000/
-Accept: application/json
+### Health
+GET {{baseUrl}}/health
 
-###
+### 消费者登录
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
 
-GET http://127.0.0.1:8000/hello/User
-Accept: application/json
+{
+  "role": "consumer",
+  "login_name": "13812345678",
+  "password": "Demo1234",
+  "remember": true
+}
 
-###
+### 平台客服登录
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "role": "platform",
+  "login_name": "agent01",
+  "password": "Platform1234",
+  "remember": true
+}
+
+### 商家登录
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "role": "merchant",
+  "login_name": "merchant01",
+  "password": "Merchant1234",
+  "remember": true
+}
