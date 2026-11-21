@@ -7,6 +7,15 @@ import type { Role } from '@/types/api'
 import { roleMeta } from '@/utils/labels'
 import { useAuthStore } from '@/stores/auth'
 
+const props = withDefaults(
+  defineProps<{
+    variant?: 'inline' | 'floating'
+  }>(),
+  {
+    variant: 'inline',
+  },
+)
+
 const route = useRoute()
 const router = useRouter()
 const auth = useAuthStore()
@@ -37,116 +46,106 @@ function goRole(role: Role): void {
 function userFor(role: Role) {
   return auth.userFor(role)
 }
+
+const variantClass = computed(() => `role-switch--${props.variant}`)
 </script>
 
 <template>
-  <aside class="role-rail" aria-label="端切换">
-    <p class="role-rail__head">切换端</p>
+  <div
+    class="role-switch"
+    :class="variantClass"
+    role="group"
+    aria-label="切换端"
+  >
     <button
       v-for="item in roles"
       :key="item.key"
-      class="role-tab"
+      class="role-switch__tab"
       :class="{ 'is-active': activeRole === item.key }"
       :style="{ '--role-accent': roleMeta[item.key].accent }"
       type="button"
+      :aria-label="`切换到${roleMeta[item.key].label}`"
+      :title="roleMeta[item.key].label"
       @click="goRole(item.key)"
     >
-      <span class="role-tab__icon">
+      <span class="role-switch__icon">
         <el-icon><component :is="item.icon" /></el-icon>
-        <i v-if="userFor(item.key)" class="role-tab__online" />
+        <i v-if="userFor(item.key)" class="role-switch__online" aria-hidden="true" />
+        <el-icon v-else class="role-switch__lock" aria-hidden="true"><Lock /></el-icon>
       </span>
-      <span class="role-tab__copy">
-        <strong>{{ roleMeta[item.key].label }}</strong>
-        <small>{{ userFor(item.key)?.display_name || '未登录' }}</small>
-      </span>
-      <el-icon v-if="!userFor(item.key)" class="role-tab__lock"><Lock /></el-icon>
+      <span class="role-switch__label">{{ roleMeta[item.key].label }}</span>
     </button>
-    <p class="role-rail__hint">三个端独立登录</p>
-  </aside>
+  </div>
 </template>
 
 <style scoped>
-.role-rail {
-  position: fixed;
-  z-index: 50;
-  top: 50%;
-  right: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-  width: 100px;
-  padding: 10px 7px;
-  border: 1px solid rgba(228, 228, 235, 0.9);
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.92);
-  box-shadow: 0 18px 46px rgba(27, 29, 35, 0.12);
-  backdrop-filter: blur(18px);
-  transform: translateY(-50%);
-}
-
-.role-rail__head {
-  padding: 3px 4px 5px;
-  color: #b1b1b9;
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-align: center;
-}
-
-.role-tab {
-  position: relative;
-  display: flex;
-  flex-direction: column;
+.role-switch {
+  display: inline-flex;
   align-items: center;
-  gap: 4px;
-  width: 100%;
-  padding: 9px 4px 8px;
+  gap: 2px;
+  flex: 0 0 auto;
+  padding: 3px;
+  border: 1px solid rgba(31, 45, 82, 0.1);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 6px 20px rgba(31, 45, 82, 0.1);
+  backdrop-filter: blur(12px);
+}
+
+.role-switch__tab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 34px;
+  padding: 0 11px 0 7px;
   border: 1px solid transparent;
-  border-radius: 12px;
-  color: #9898a1;
+  border-radius: 999px;
+  color: #6c7488;
   background: transparent;
+  font-size: 13px;
+  font-weight: 550;
+  white-space: nowrap;
   cursor: pointer;
   transition:
-    color 0.2s ease,
-    border-color 0.2s ease,
-    background 0.2s ease,
-    transform 0.2s ease;
+    color 0.18s ease,
+    background 0.18s ease,
+    border-color 0.18s ease;
 }
 
-.role-tab:hover {
+.role-switch__tab:hover {
   color: var(--role-accent);
-  background: #fafafa;
-  transform: translateY(-1px);
+  background: color-mix(in srgb, var(--role-accent) 7%, #fff);
 }
 
-.role-tab.is-active {
+.role-switch__tab.is-active {
   color: var(--role-accent);
-  border-color: color-mix(in srgb, var(--role-accent) 18%, #ffffff);
-  background: color-mix(in srgb, var(--role-accent) 7%, #ffffff);
+  border-color: color-mix(in srgb, var(--role-accent) 18%, #fff);
+  background: color-mix(in srgb, var(--role-accent) 10%, #fff);
 }
 
-.role-tab__icon {
+.role-switch__icon {
   position: relative;
   display: grid;
   place-items: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 10px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
   color: var(--role-accent);
-  background: color-mix(in srgb, var(--role-accent) 9%, #ffffff);
-  font-size: 16px;
+  background: color-mix(in srgb, var(--role-accent) 10%, #fff);
+  font-size: 14px;
 }
 
-.role-tab.is-active .role-tab__icon {
+.role-switch__tab.is-active .role-switch__icon {
   color: #fff;
   background: var(--role-accent);
-  box-shadow: 0 7px 16px color-mix(in srgb, var(--role-accent) 25%, transparent);
+  box-shadow: 0 4px 10px color-mix(in srgb, var(--role-accent) 28%, transparent);
 }
 
-.role-tab__online {
+.role-switch__online {
   position: absolute;
-  top: -2px;
-  right: -2px;
+  top: -1px;
+  right: -1px;
   width: 7px;
   height: 7px;
   border: 2px solid #fff;
@@ -154,89 +153,71 @@ function userFor(role: Role) {
   background: #11b479;
 }
 
-.role-tab__copy {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
-  max-width: 100%;
-}
-
-.role-tab__copy strong {
-  font-size: 10px;
-  font-weight: 650;
-  line-height: 1.2;
-}
-
-.role-tab__copy small {
-  max-width: 84px;
-  overflow: hidden;
-  color: #b0b0b8;
-  font-size: 8px;
-  font-weight: 400;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.role-tab__lock {
+.role-switch__lock {
   position: absolute;
-  top: 8px;
-  right: 8px;
-  color: #c4c4cc;
-  font-size: 8px;
+  top: -2px;
+  right: -3px;
+  padding: 1px;
+  border-radius: 50%;
+  color: #9aa3b5;
+  background: #fff;
+  font-size: 11px;
 }
 
-.role-rail__hint {
-  padding: 2px 0 0;
-  color: #c0c0c7;
-  font-size: 8px;
-  text-align: center;
+.role-switch__label {
+  line-height: 1;
+}
+
+@media (min-width: 861px) {
+  .role-switch--floating {
+    display: none;
+  }
+}
+
+@media (min-width: 861px) and (max-width: 1150px) {
+  .role-switch--inline .role-switch__tab {
+    gap: 4px;
+    padding: 0 7px 0 5px;
+    font-size: 12px;
+  }
+
+  .role-switch--inline .role-switch__icon {
+    width: 20px;
+    height: 20px;
+    font-size: 13px;
+  }
 }
 
 @media (max-width: 860px) {
-  .role-rail {
-    top: auto;
+  .role-switch--inline {
+    display: none;
+  }
+
+  .role-switch--floating {
+    position: fixed;
+    z-index: 50;
     right: 12px;
     bottom: 10px;
     left: 12px;
-    flex-direction: row;
-    align-items: stretch;
-    width: auto;
+    display: flex;
     padding: 6px;
     border-radius: 16px;
-    transform: none;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 14px 40px rgba(27, 29, 35, 0.18);
   }
 
-  .role-rail__head,
-  .role-rail__hint {
-    display: none;
-  }
-
-  .role-tab {
+  .role-switch--floating .role-switch__tab {
     flex: 1;
-    flex-direction: row;
     justify-content: center;
-    gap: 6px;
-    padding: 8px 6px;
+    height: 46px;
+    padding: 0 6px;
+    font-size: 13px;
   }
 
-  .role-tab__icon {
-    width: 27px;
-    height: 27px;
-    font-size: 14px;
-  }
-
-  .role-tab__copy {
-    align-items: flex-start;
-  }
-
-  .role-tab__copy strong {
-    font-size: 10px;
-  }
-
-  .role-tab__copy small,
-  .role-tab__lock {
-    display: none;
+  .role-switch--floating .role-switch__icon {
+    width: 28px;
+    height: 28px;
+    font-size: 15px;
   }
 }
 </style>

@@ -107,7 +107,10 @@ def invite(
     if merchant is None or merchant.status != "active":
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="商家不存在")
     if conversation.merchant_id == merchant.id:
-        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="商家已在该会话中")
+        return InviteMerchantResponse(
+            conversation=serialize_conversation(db, conversation),
+            merchant=serialize_merchant(merchant),
+        )
     invite_merchant(db, conversation, merchant, auth.user)
     db.commit()
     db.refresh(conversation)

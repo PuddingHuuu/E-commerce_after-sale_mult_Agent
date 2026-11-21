@@ -176,13 +176,11 @@ img {
 
 .portal-shell {
   min-height: 100vh;
-  padding-right: 132px;
   background: var(--bg-page);
 }
 
 @media (max-width: 860px) {
   .portal-shell {
-    padding-right: 0;
     padding-bottom: 86px;
   }
 }
@@ -196,7 +194,7 @@ img {
 }
 
 .page-title {
-  font-size: 24px;
+  font-size: 27px;
   font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--text-strong);
@@ -204,7 +202,7 @@ img {
 
 .page-desc {
   margin-top: 7px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--text-muted);
 }
 
@@ -212,13 +210,13 @@ img {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
   color: var(--text);
 }
 
 .eyebrow {
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -240,6 +238,27 @@ img {
   --el-color-primary-light-8: #f9d3d1;
   --el-color-primary-light-9: #fce9e8;
   --el-color-primary-dark-2: #b41d15;
+}
+
+/* 平台客服端蓝白主题：shell 与 teleport 到 body 的抽屉/弹窗/下拉共用 */
+.platform-shell,
+.auth-page--platform,
+.ticket-drawer,
+.platform-dialog,
+.platform-message-box,
+.platform-select-popper {
+  --el-color-primary: #2f6fe4;
+  --el-color-primary-light-3: #6b9aec;
+  --el-color-primary-light-5: #97b7f2;
+  --el-color-primary-light-7: #c3d5f8;
+  --el-color-primary-light-8: #d6e3fa;
+  --el-color-primary-light-9: #eef4ff;
+  --el-color-primary-dark-2: #1d5bd6;
+  --brand: #2f6fe4;
+  --brand-dark: #1d5bd6;
+  --brand-deep: #1749b0;
+  --brand-soft: #eef4ff;
+  --brand-soft-strong: #dbe6f5;
 }
 
 .as-drawer .el-drawer__body {
@@ -285,7 +304,7 @@ img {
   --el-table-row-hover-bg-color: #fff8f4;
   --el-table-border-color: #f0f0f4;
   --el-table-text-color: #3d3d42;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .el-table th.el-table__cell {

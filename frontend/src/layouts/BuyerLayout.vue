@@ -3,6 +3,7 @@ import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import { ArrowRight, Box, Headset, User } from '@element-plus/icons-vue'
+import RoleRail from '@/components/layout/RoleRail.vue'
 import { useAuthStore } from '@/stores/auth'
 
 const route = useRoute()
@@ -65,6 +66,8 @@ async function logout(): Promise<void> {
             <el-icon><ArrowRight /></el-icon>
           </button>
         </div>
+
+        <RoleRail class="buyer-role-switch" />
       </div>
     </header>
 
@@ -87,7 +90,7 @@ async function logout(): Promise<void> {
   position: sticky;
   z-index: 20;
   top: 0;
-  height: 64px;
+  height: 68px;
   border-bottom: 1px solid rgba(233, 233, 238, 0.85);
   background: rgba(255, 255, 255, 0.86);
   backdrop-filter: blur(18px);
@@ -96,8 +99,8 @@ async function logout(): Promise<void> {
 .buyer-header__inner {
   display: flex;
   align-items: center;
-  gap: 30px;
-  width: min(1240px, calc(100% - 44px));
+  gap: 28px;
+  width: min(1400px, calc(100% - 36px));
   height: 100%;
   margin: 0 auto;
 }
@@ -135,7 +138,7 @@ async function logout(): Promise<void> {
 
 .buyer-brand__copy small {
   color: #a5a5ad;
-  font-size: 8px;
+  font-size: 11px;
   letter-spacing: 0.04em;
 }
 
@@ -149,12 +152,12 @@ async function logout(): Promise<void> {
 .buyer-nav__item {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  height: 32px;
-  padding: 0 11px;
-  border-radius: 8px;
+  gap: 6px;
+  height: 36px;
+  padding: 0 13px;
+  border-radius: 9px;
   color: #888892;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 500;
   transition:
     color 0.2s ease,
@@ -173,7 +176,7 @@ async function logout(): Promise<void> {
 }
 
 .buyer-nav__item :deep(.el-icon) {
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .buyer-user {
@@ -186,12 +189,12 @@ async function logout(): Promise<void> {
 .buyer-user__avatar {
   display: grid;
   place-items: center;
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   border-radius: 9px;
   color: #fff;
   background: linear-gradient(145deg, #ffa05c, #ef5a13);
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 700;
 }
 
@@ -204,13 +207,13 @@ async function logout(): Promise<void> {
 
 .buyer-user__copy strong {
   color: #4f4f57;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
 }
 
 .buyer-user__copy small {
   color: #a9a9b1;
-  font-size: 8px;
+  font-size: 11px;
 }
 
 .buyer-logout {
@@ -221,7 +224,7 @@ async function logout(): Promise<void> {
   padding: 5px 0;
   color: #aaaab2;
   background: transparent;
-  font-size: 9px;
+  font-size: 12px;
   cursor: pointer;
 }
 
@@ -229,15 +232,35 @@ async function logout(): Promise<void> {
   color: #ef5a13;
 }
 
+.buyer-role-switch {
+  margin-left: 2px;
+}
+
 .buyer-main {
-  width: min(1240px, calc(100% - 44px));
+  width: min(1400px, calc(100% - 36px));
   margin: 0 auto;
-  padding: 22px 0 34px;
+  padding: 22px 0 32px;
+}
+
+@media (max-width: 1150px) {
+  .buyer-header__inner {
+    gap: 16px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .buyer-nav__item :deep(.el-icon) {
+    display: none;
+  }
+
+  .buyer-nav__item {
+    padding: 0 8px;
+  }
 }
 
 @media (max-width: 860px) {
   .buyer-header {
-    height: 56px;
+    height: 60px;
   }
 
   .buyer-header__inner {
@@ -258,7 +281,7 @@ async function logout(): Promise<void> {
   }
 
   .buyer-brand__copy strong {
-    font-size: 12px;
+    font-size: 13px;
   }
 
   .buyer-nav {
@@ -268,7 +291,7 @@ async function logout(): Promise<void> {
 
   .buyer-nav__item {
     padding: 0 7px;
-    font-size: 10px;
+    font-size: 12px;
   }
 
   .buyer-nav__item :deep(.el-icon) {

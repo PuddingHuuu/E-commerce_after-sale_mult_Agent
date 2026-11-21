@@ -109,7 +109,7 @@ function runSummary(runId: number): string {
   <el-drawer
     v-model="visible"
     class="as-drawer"
-    size="610px"
+    size="660px"
     :with-header="false"
     append-to-body
   >
@@ -288,7 +288,7 @@ function runSummary(runId: number): string {
   display: flex;
   flex-direction: column;
   height: 100%;
-  background: #f7f8fa;
+  background: #f2f6fc;
 }
 
 .drawer-head {
@@ -310,11 +310,11 @@ function runSummary(runId: number): string {
 .drawer-head__icon {
   display: grid;
   place-items: center;
-  width: 41px;
-  height: 41px;
+  width: 46px;
+  height: 46px;
   border-radius: 12px;
-  color: #db3627;
-  background: #fff0ed;
+  color: #2f6fe4;
+  background: #eef4ff;
   font-size: 20px;
 }
 
@@ -335,15 +335,15 @@ function runSummary(runId: number): string {
   margin-top: 4px;
   color: #a6a6ae;
   font-family: 'DIN Alternate', 'Bahnschrift', sans-serif;
-  font-size: 9px;
+  font-size: 12px;
   letter-spacing: 0.03em;
 }
 
 .drawer-close {
   display: grid;
   place-items: center;
-  width: 31px;
-  height: 31px;
+  width: 34px;
+  height: 34px;
   border-radius: 8px;
   color: #96969f;
   background: #f6f6f8;
@@ -377,13 +377,13 @@ function runSummary(runId: number): string {
 
 .summary-strip span {
   color: #a4a4ac;
-  font-size: 9px;
+  font-size: 12px;
 }
 
 .summary-strip strong {
   overflow: hidden;
   color: #66666f;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 500;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -407,25 +407,25 @@ function runSummary(runId: number): string {
 
 .card-title h3 {
   color: #45454d;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 650;
 }
 
 .card-title > span {
   color: #aaaab2;
-  font-size: 9px;
+  font-size: 12px;
 }
 
 .detail-card h4 {
   color: #3f3f46;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
 }
 
 .description {
   margin-top: 7px;
   color: #696972;
-  font-size: 11px;
+  font-size: 13px;
   line-height: 1.8;
   white-space: pre-wrap;
 }
@@ -434,9 +434,9 @@ function runSummary(runId: number): string {
   margin-top: 9px;
   padding: 8px 10px;
   border-radius: 7px;
-  color: #9a7a69;
-  background: #fdfaf8;
-  font-size: 9px;
+  color: #5f6f8f;
+  background: #f5f8ff;
+  font-size: 12px;
 }
 
 .meta-grid {
@@ -456,12 +456,12 @@ function runSummary(runId: number): string {
 
 .meta-grid span {
   color: #aaaab2;
-  font-size: 8px;
+  font-size: 11px;
 }
 
 .meta-grid strong {
   color: #6a6a73;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 500;
   line-height: 1.55;
 }
@@ -478,11 +478,11 @@ function runSummary(runId: number): string {
 .linked-order__thumb {
   display: grid;
   place-items: center;
-  width: 34px;
-  height: 34px;
+  width: 38px;
+  height: 38px;
   border-radius: 8px;
-  color: #dd3f2d;
-  background: #fff0ed;
+  color: #2f6fe4;
+  background: #eef4ff;
   font-size: 16px;
 }
 
@@ -497,7 +497,7 @@ function runSummary(runId: number): string {
 .linked-order__copy strong {
   overflow: hidden;
   color: #57575f;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 550;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -505,7 +505,7 @@ function runSummary(runId: number): string {
 
 .linked-order__copy span {
   color: #a4a4ac;
-  font-size: 9px;
+  font-size: 12px;
 }
 
 .linked-order__end {
@@ -518,20 +518,20 @@ function runSummary(runId: number): string {
 .linked-order__end > strong {
   color: #d33e2e;
   font-family: 'DIN Alternate', 'Bahnschrift', sans-serif;
-  font-size: 11px;
+  font-size: 13px;
 }
 
 .ai-card {
-  background: linear-gradient(180deg, #fff, #fffaf7);
+  background: linear-gradient(180deg, #fff, #f5f9ff);
 }
 
 .ai-reply {
   padding: 11px 12px;
-  border-left: 3px solid #ffc09e;
+  border-left: 3px solid #9fc0f4;
   border-radius: 0 8px 8px 0;
-  color: #605a57;
-  background: #fff8f3;
-  font-size: 10px;
+  color: #44506b;
+  background: #eef4ff;
+  font-size: 12px;
   line-height: 1.85;
   white-space: pre-wrap;
 }
@@ -546,9 +546,9 @@ function runSummary(runId: number): string {
 .ai-steps span {
   padding: 3px 7px;
   border-radius: 4px;
-  color: #9b8172;
-  background: #fbf7f4;
-  font-size: 8px;
+  color: #6b7a99;
+  background: #f3f7ff;
+  font-size: 11px;
 }
 
 .agent-trace {
@@ -564,7 +564,7 @@ function runSummary(runId: number): string {
 }
 
 .agent-run.is-open {
-  border-color: #f0dfd6;
+  border-color: #dbe6f5;
 }
 
 .agent-run__head {
@@ -572,7 +572,7 @@ function runSummary(runId: number): string {
   align-items: center;
   gap: 7px;
   width: 100%;
-  padding: 8px 9px;
+  padding: 10px 11px;
   text-align: left;
   background: #fff;
   cursor: pointer;
@@ -599,7 +599,7 @@ function runSummary(runId: number): string {
   align-items: center;
   gap: 4px;
   color: #5c5c65;
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 550;
 }
 
@@ -608,23 +608,23 @@ function runSummary(runId: number): string {
   border-radius: 3px;
   color: #0e8f65;
   background: #edf9f4;
-  font-size: 8px;
+  font-size: 11px;
 }
 
 .agent-run__model {
   margin-left: auto;
   color: #b1b1b9;
-  font-size: 8px;
+  font-size: 11px;
 }
 
 .agent-run__duration {
   color: #b1b1b9;
-  font-size: 8px;
+  font-size: 11px;
 }
 
 .agent-run__arrow {
   color: #c2c2ca;
-  font-size: 10px;
+  font-size: 12px;
   transition: transform 0.2s ease;
 }
 
@@ -647,7 +647,7 @@ function runSummary(runId: number): string {
   color: #67676f;
   background: #f3f3f6;
   font-family: 'Cascadia Code', 'SFMono-Regular', Consolas, monospace;
-  font-size: 8px;
+  font-size: 11px;
   line-height: 1.55;
   white-space: pre-wrap;
 }
@@ -655,12 +655,12 @@ function runSummary(runId: number): string {
 .run-error {
   margin-bottom: 7px;
   color: #c44532;
-  font-size: 9px;
+  font-size: 12px;
 }
 
 .empty-text {
   color: #aaaab2;
-  font-size: 9px;
+  font-size: 12px;
 }
 
 .conversation-link {
@@ -672,8 +672,8 @@ function runSummary(runId: number): string {
 .conversation-link__icon {
   display: grid;
   place-items: center;
-  width: 33px;
-  height: 33px;
+  width: 37px;
+  height: 37px;
   border-radius: 9px;
   color: #238181;
   background: #edf8f8;
@@ -687,14 +687,14 @@ function runSummary(runId: number): string {
 
 .conversation-link h3 {
   color: #4a4a52;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
 }
 
 .conversation-link p {
   margin-top: 3px;
   color: #a0a0a8;
-  font-size: 9px;
+  font-size: 12px;
 }
 
 .drawer-foot {
@@ -710,12 +710,19 @@ function runSummary(runId: number): string {
 
 .foot-note {
   color: #aaaab2;
-  font-size: 8px;
+  font-size: 11px;
 }
 
 .drawer-foot > div {
   display: flex;
   gap: 8px;
+}
+
+.drawer-foot :deep(.el-button) {
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 8px;
+  font-size: 13px;
 }
 
 .drawer-loading {

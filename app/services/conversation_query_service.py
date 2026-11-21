@@ -70,10 +70,19 @@ def buyer_conversations(
     base = select(Conversation).where(Conversation.customer_id == customer_id)
     if keyword:
         term = f"%{keyword.strip()}%"
+        linked_order_conversations = (
+            select(Ticket.conversation_id)
+            .join(Order, Order.id == Ticket.order_id)
+            .where(
+                Ticket.conversation_id.is_not(None),
+                Order.order_no.ilike(term),
+            )
+        )
         base = base.outerjoin(Order, Order.id == Conversation.order_id).where(
             or_(
                 Conversation.last_message.ilike(term),
                 Order.order_no.ilike(term),
+                Conversation.id.in_(linked_order_conversations),
             )
         )
     all_conversations = db.scalars(base).all()
@@ -102,6 +111,14 @@ def platform_conversations_page(
         base = base.where(Conversation.status == conversation_status)
     if keyword:
         term = f"%{keyword.strip()}%"
+        linked_order_conversations = (
+            select(Ticket.conversation_id)
+            .join(Order, Order.id == Ticket.order_id)
+            .where(
+                Ticket.conversation_id.is_not(None),
+                Order.order_no.ilike(term),
+            )
+        )
         base = (
             base.outerjoin(User, User.id == Conversation.customer_id)
             .outerjoin(Order, Order.id == Conversation.order_id)
@@ -113,6 +130,7 @@ def platform_conversations_page(
                     User.phone.ilike(term),
                     Order.order_no.ilike(term),
                     Merchant.store_name.ilike(term),
+                    Conversation.id.in_(linked_order_conversations),
                 )
             )
         )
@@ -195,7 +213,7 @@ def conversation_messages(
             ConversationMessage.conversation_id == conversation.id,
             ConversationMessage.id > after_id,
         )
-        .order_by(ConversationMessage.id)
+        .order_by(ConversationMessage.created_at, ConversationMessage.id)
     )
     messages = db.scalars(stmt).all()
     return [serialize_message(db, message, conversation) for message in messages]

@@ -187,16 +187,16 @@ onBeforeUnmount(() => {
 }
 
 .buyer-page-head p:last-child {
-  margin-top: 7px;
+  margin-top: 8px;
   color: #92929c;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .buyer-page-head :deep(.el-button) {
-  height: 38px;
-  padding: 0 16px;
+  height: 42px;
+  padding: 0 19px;
   border-radius: 9px;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   box-shadow: 0 8px 18px rgba(255, 80, 0, 0.16);
 }
@@ -204,9 +204,9 @@ onBeforeUnmount(() => {
 .after-sale-summary {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   margin-bottom: 13px;
-  padding: 9px;
+  padding: 11px;
   border: 1px solid #ececf1;
   border-radius: 12px;
   background: #fff;
@@ -261,7 +261,7 @@ onBeforeUnmount(() => {
 
 .summary-item small {
   color: #9b9ba4;
-  font-size: 9px;
+  font-size: 12px;
 }
 
 .ticket-list-area {
@@ -299,8 +299,8 @@ onBeforeUnmount(() => {
 .ticket-card__head {
   display: flex;
   align-items: flex-start;
-  gap: 10px;
-  padding: 14px 16px 11px;
+  gap: 12px;
+  padding: 16px 18px 13px;
   border-bottom: 1px solid #f5f5f7;
 }
 
@@ -330,7 +330,7 @@ onBeforeUnmount(() => {
 
 .ticket-card__title h2 {
   color: #3f3f46;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 650;
 }
 
@@ -340,7 +340,7 @@ onBeforeUnmount(() => {
   gap: 5px;
   margin-top: 5px;
   color: #a2a2ab;
-  font-size: 9px;
+  font-size: 12px;
 }
 
 .ticket-card__title p span {
@@ -350,7 +350,7 @@ onBeforeUnmount(() => {
 .ticket-card__arrow {
   margin-top: 9px;
   color: #c2c2c9;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .ticket-card__body {
@@ -359,7 +359,7 @@ onBeforeUnmount(() => {
 
 .ticket-card__body > p {
   color: #66666f;
-  font-size: 11px;
+  font-size: 13px;
   line-height: 1.75;
 }
 
@@ -376,7 +376,7 @@ onBeforeUnmount(() => {
   align-items: center;
   gap: 4px;
   color: #d76a35;
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 600;
 }
 
@@ -385,7 +385,7 @@ onBeforeUnmount(() => {
   margin-top: 4px;
   overflow: hidden;
   color: #8e786d;
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.7;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
@@ -400,7 +400,7 @@ onBeforeUnmount(() => {
   border-top: 1px solid #f6f6f8;
   color: #a7a7af;
   background: #fcfcfd;
-  font-size: 9px;
+  font-size: 12px;
 }
 
 .ticket-time {
@@ -417,13 +417,13 @@ onBeforeUnmount(() => {
 
 .ticket-pagination > span {
   color: #a8a8b0;
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .ticket-pagination :deep(.el-pagination) {
-  --el-pagination-button-width: 28px;
-  --el-pagination-button-height: 28px;
-  font-size: 10px;
+  --el-pagination-button-width: 32px;
+  --el-pagination-button-height: 32px;
+  font-size: 12px;
 }
 
 .ticket-pagination :deep(.el-pagination.is-background .btn-prev),

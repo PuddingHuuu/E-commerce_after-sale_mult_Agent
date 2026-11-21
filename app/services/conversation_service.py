@@ -28,25 +28,21 @@ def add_message(
     return message
 
 
-def _find_active_conversation(db: Session, customer_id: int) -> Conversation | None:
+def _find_customer_conversation(db: Session, customer_id: int) -> Conversation | None:
+    """Every consumer shares a single platform conversation, regardless of ticket."""
     return db.scalar(
         select(Conversation)
-        .where(
-            Conversation.customer_id == customer_id,
-            Conversation.status.in_(
-                [ConversationStatus.WAITING.value, ConversationStatus.HUMAN.value]
-            ),
-        )
+        .where(Conversation.customer_id == customer_id)
         .order_by(Conversation.updated_at.desc())
         .limit(1)
     )
 
 
 def transfer_ticket_to_human(db: Session, ticket: Ticket, reason: str) -> Conversation:
-    """Create or reuse a human conversation for a transferred ticket."""
-    conversation = ticket.conversation
+    """Attach a transferred ticket to the consumer's single platform conversation."""
+    conversation = _find_customer_conversation(db, ticket.customer_id)
     if conversation is None:
-        conversation = _find_active_conversation(db, ticket.customer_id)
+        conversation = ticket.conversation
     if conversation is None:
         conversation = Conversation(
             customer_id=ticket.customer_id,
@@ -55,6 +51,16 @@ def transfer_ticket_to_human(db: Session, ticket: Ticket, reason: str) -> Conver
         )
         db.add(conversation)
         db.flush()
+    else:
+        conversation.order_id = ticket.order_id
+        if conversation.status == ConversationStatus.CLOSED.value:
+            # Reopen the same thread for the new issue instead of creating a second dialog.
+            conversation.status = ConversationStatus.WAITING.value
+            conversation.closed_at = None
+            conversation.assigned_agent_id = None
+            conversation.merchant_id = None
+            conversation.merchant_invited_at = None
+            conversation.merchant_invited_by = None
 
     ticket.conversation_id = conversation.id
     if conversation.status == ConversationStatus.HUMAN.value:

@@ -99,7 +99,11 @@ onMounted(scrollToBottom)
             <div class="message-bubble">{{ message.content }}</div>
           </div>
 
-          <div v-if="isMine(message)" class="message-avatar is-owner">
+          <div
+            v-if="isMine(message)"
+            class="message-avatar is-owner"
+            :class="`is-owner-${currentRole}`"
+          >
             <el-icon v-if="currentRole === 'platform'"><Headset /></el-icon>
             <el-icon v-else-if="currentRole === 'merchant'"><ShoppingBag /></el-icon>
             <el-icon v-else><User /></el-icon>
@@ -117,7 +121,7 @@ onMounted(scrollToBottom)
   flex: 1;
   min-height: 0;
   background:
-    radial-gradient(circle at 18% 8%, rgba(255, 120, 43, 0.04), transparent 26%),
+    radial-gradient(circle at 18% 8%, color-mix(in srgb, var(--chat-accent, #ff5000) 5%, transparent), transparent 26%),
     linear-gradient(180deg, #fcfcfd 0%, #fafafb 100%);
 }
 
@@ -145,10 +149,10 @@ onMounted(scrollToBottom)
   width: 58px;
   height: 58px;
   margin-bottom: 14px;
-  border: 1px solid #ffe0ce;
+  border: 1px solid color-mix(in srgb, var(--chat-accent, #ff5000) 22%, #ffffff);
   border-radius: 19px;
   color: var(--chat-accent, #ff5000);
-  background: #fff7f1;
+  background: color-mix(in srgb, var(--chat-accent, #ff5000) 6%, #ffffff);
   font-size: 24px;
 }
 
@@ -161,7 +165,7 @@ onMounted(scrollToBottom)
 .chat-empty span {
   max-width: 320px;
   margin-top: 7px;
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.7;
   color: var(--text-muted);
 }
@@ -181,12 +185,12 @@ onMounted(scrollToBottom)
   border-radius: 999px;
   color: #8d8d97;
   background: #f1f1f4;
-  font-size: 11px;
+  font-size: 13px;
   line-height: 1.6;
 }
 
 .system-row time {
-  font-size: 10px;
+  font-size: 12px;
   color: #b4b4bc;
 }
 
@@ -210,12 +214,12 @@ onMounted(scrollToBottom)
   margin-top: 18px;
   border-radius: 11px;
   color: #fff;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
 }
 
 .message-avatar.is-platform {
-  background: linear-gradient(140deg, #ff8a6e, #dc3122);
+  background: linear-gradient(140deg, #6a9cf0, #2f6fe4);
 }
 
 .message-avatar.is-merchant {
@@ -228,6 +232,10 @@ onMounted(scrollToBottom)
 
 .message-avatar.is-owner {
   background: linear-gradient(140deg, #ff9a6b, #ee5428);
+}
+
+.message-avatar.is-owner.is-owner-platform {
+  background: linear-gradient(140deg, #6a9cf0, #2f6fe4);
 }
 
 .message-content {
@@ -248,7 +256,7 @@ onMounted(scrollToBottom)
   height: 18px;
   margin-bottom: 3px;
   color: var(--text-faint);
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .message-row.is-mine .message-meta {
@@ -257,16 +265,16 @@ onMounted(scrollToBottom)
 
 .message-name {
   color: var(--text-muted);
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 500;
 }
 
 .role-label {
   padding: 1px 4px;
   border-radius: 3px;
-  color: #db3a2a;
-  background: #fff0ed;
-  font-size: 8px;
+  color: #2f6fe4;
+  background: #eef4ff;
+  font-size: 11px;
 }
 
 .role-label.is-merchant {

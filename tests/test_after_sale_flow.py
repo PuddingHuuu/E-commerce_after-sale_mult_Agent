@@ -178,6 +178,57 @@ def test_vague_ticket_auto_handoff(client, auth_headers):
     assert "无法识别" in (ticket.json()["escalation_reason"] or "")
 
 
+def test_single_platform_conversation_per_consumer(client, auth_headers):
+    conversations = client.get(
+        "/api/v1/platform/conversations?keyword=林晓",
+        headers=auth_headers["platform"],
+    )
+    assert conversations.status_code == 200
+    assert conversations.json()["total"] == 1
+    conversation_id = conversations.json()["items"][0]["id"]
+
+    completed = client.get(
+        "/api/v1/buyer/orders?tab=completed&page=1&page_size=1",
+        headers=auth_headers["consumer"],
+    )
+    order_id = completed.json()["items"][0]["id"]
+    created = client.post(
+        "/api/v1/buyer/tickets",
+        headers=auth_headers["consumer"],
+        json={
+            "order_id": order_id,
+            "description": "订单商品有划痕，希望安排换货处理，麻烦人工确认。",
+            "expected_resolution": "换货",
+        },
+    )
+    assert created.status_code == 202, created.text
+    ticket_id = created.json()["id"]
+
+    feedback = client.post(
+        f"/api/v1/buyer/tickets/{ticket_id}/feedback",
+        headers=auth_headers["consumer"],
+        json={"satisfied": False, "reason": "希望平台人工继续处理"},
+    )
+    assert feedback.status_code == 200
+    assert feedback.json()["conversation_id"] == conversation_id
+
+    conversations = client.get(
+        "/api/v1/platform/conversations?keyword=林晓",
+        headers=auth_headers["platform"],
+    )
+    assert conversations.status_code == 200
+    assert conversations.json()["total"] == 1
+
+    detail = client.get(
+        f"/api/v1/platform/conversations/{conversation_id}",
+        headers=auth_headers["platform"],
+    )
+    assert detail.status_code == 200
+    linked_ticket_ids = {item["id"] for item in detail.json()["linked_tickets"]}
+    assert ticket_id in linked_ticket_ids
+    assert len(detail.json()["linked_tickets"]) >= 2
+
+
 def test_registration_and_platform_invite_code(client):
     import uuid
 
@@ -244,4 +295,4 @@ def test_platform_search_endpoints(client, auth_headers):
         headers=auth_headers["platform"],
     )
     assert conversations.status_code == 200
-    assert conversations.json()["total"] >= 1
+    assert conversations.json()["total"] == 1

@@ -157,7 +157,6 @@ onBeforeUnmount(() => {
           <el-input
             v-model="keyword"
             :prefix-icon="Search"
-            size="small"
             placeholder="搜索消费者或消息"
             clearable
             @keyup.enter="search"
@@ -275,7 +274,7 @@ onBeforeUnmount(() => {
   align-items: flex-end;
   justify-content: space-between;
   gap: 24px;
-  margin-bottom: 15px;
+  margin-bottom: 18px;
 }
 
 .merchant-page-head h1 {
@@ -287,9 +286,9 @@ onBeforeUnmount(() => {
 }
 
 .merchant-page-head p:last-child {
-  margin-top: 7px;
+  margin-top: 8px;
   color: #8d9a9b;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .merchant-badge {
@@ -328,14 +327,14 @@ onBeforeUnmount(() => {
 
 .merchant-badge small {
   color: #9aa9aa;
-  font-size: 8px;
+  font-size: 11px;
 }
 
 .merchant-workspace {
   display: grid;
-  grid-template-columns: 305px minmax(0, 1fr);
+  grid-template-columns: 340px minmax(0, 1fr);
   gap: 13px;
-  height: calc(100vh - 62px - 112px);
+  height: calc(100vh - 68px - 112px);
   min-height: 560px;
 }
 
@@ -371,12 +370,12 @@ onBeforeUnmount(() => {
 .list-head span {
   display: grid;
   place-items: center;
-  min-width: 20px;
-  height: 20px;
-  border-radius: 6px;
+  min-width: 24px;
+  height: 24px;
+  border-radius: 7px;
   color: #8ca0a1;
   background: #f2f8f8;
-  font-size: 9px;
+  font-size: 12px;
 }
 
 .list-search {
@@ -384,14 +383,14 @@ onBeforeUnmount(() => {
 }
 
 .list-search :deep(.el-input__wrapper) {
-  height: 30px;
-  border-radius: 7px;
+  height: 34px;
+  border-radius: 8px;
   background: #f7fbfb;
   box-shadow: 0 0 0 1px #e2eeee inset;
 }
 
 .list-search :deep(.el-input__inner) {
-  font-size: 9px;
+  font-size: 13px;
 }
 
 .merchant-conversations {
@@ -406,9 +405,9 @@ onBeforeUnmount(() => {
   gap: 8px;
   width: 100%;
   margin-bottom: 3px;
-  padding: 9px 7px;
+  padding: 11px 9px;
   border: 1px solid transparent;
-  border-radius: 9px;
+  border-radius: 10px;
   text-align: left;
   background: transparent;
   cursor: pointer;
@@ -431,14 +430,14 @@ onBeforeUnmount(() => {
   position: relative;
   display: grid;
   place-items: center;
-  flex: 0 0 32px;
-  width: 32px;
-  height: 32px;
+  flex: 0 0 35px;
+  width: 35px;
+  height: 35px;
   margin-top: 1px;
   border-radius: 9px;
   color: #fff;
   background: linear-gradient(145deg, #8a9fd5, #6075b3);
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
 }
 
@@ -470,20 +469,20 @@ onBeforeUnmount(() => {
 
 .conversation-top strong {
   color: #475357;
-  font-size: 10px;
+  font-size: 13px;
   font-weight: 600;
 }
 
 .conversation-top time {
   flex: 0 0 auto;
   color: #afbabb;
-  font-size: 7px;
+  font-size: 11px;
 }
 
 .conversation-preview {
   overflow: hidden;
   color: #9aa8a9;
-  font-size: 8px;
+  font-size: 12px;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -495,15 +494,15 @@ onBeforeUnmount(() => {
 }
 
 .conversation-foot :deep(.status-tag) {
-  height: 17px;
-  padding: 0 5px;
-  font-size: 7px;
+  height: 20px;
+  padding: 0 6px;
+  font-size: 11px;
 }
 
 .conversation-foot em {
   overflow: hidden;
   color: #aab8b8;
-  font-size: 7px;
+  font-size: 11px;
   font-style: normal;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -521,8 +520,8 @@ onBeforeUnmount(() => {
   align-items: center;
   gap: 9px;
   flex: 0 0 auto;
-  min-height: 64px;
-  padding: 10px 15px;
+  min-height: 72px;
+  padding: 12px 17px;
   border-bottom: 1px solid #eef4f4;
   background: linear-gradient(180deg, #fbfefe, #fff);
 }
@@ -530,13 +529,13 @@ onBeforeUnmount(() => {
 .chat-avatar {
   display: grid;
   place-items: center;
-  flex: 0 0 36px;
-  width: 36px;
-  height: 36px;
+  flex: 0 0 40px;
+  width: 40px;
+  height: 40px;
   border-radius: 10px;
   color: #fff;
   background: linear-gradient(145deg, #8ba0d7, #6076b4);
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 600;
 }
 
@@ -553,7 +552,7 @@ onBeforeUnmount(() => {
 
 .merchant-chat-head h2 {
   color: #3f4c4f;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 650;
 }
 
@@ -564,7 +563,7 @@ onBeforeUnmount(() => {
   margin-top: 4px;
   overflow: hidden;
   color: #9cabac;
-  font-size: 8px;
+  font-size: 11px;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -578,7 +577,7 @@ onBeforeUnmount(() => {
   align-items: center;
   gap: 4px;
   color: #aab8b8;
-  font-size: 7px;
+  font-size: 11px;
 }
 
 .chat-sync i {
@@ -594,9 +593,9 @@ onBeforeUnmount(() => {
   gap: 6px;
   flex: 0 0 auto;
   margin: 8px 12px 0;
-  padding: 7px 9px;
+  padding: 9px 11px;
   border-radius: 7px;
-  font-size: 8px;
+  font-size: 12px;
 }
 
 .merchant-banner.is-waiting {
@@ -605,7 +604,7 @@ onBeforeUnmount(() => {
 }
 
 .merchant-banner.is-waiting > span {
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .merchant-banner.is-closed {
@@ -618,11 +617,11 @@ onBeforeUnmount(() => {
   align-items: center;
   justify-content: center;
   flex: 0 0 auto;
-  padding: 11px 14px;
+  padding: 12px 16px;
   border-top: 1px solid #eef4f4;
   color: #9caaaa;
   background: #fbfdfd;
-  font-size: 8px;
+  font-size: 12px;
 }
 
 .merchant-chat-foot.is-closed {

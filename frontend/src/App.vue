@@ -4,5 +4,5 @@ import RoleRail from '@/components/layout/RoleRail.vue'
 
 <template>
   <router-view />
-  <RoleRail />
+  <RoleRail variant="floating" />
 </template>

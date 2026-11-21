@@ -111,7 +111,13 @@ onMounted(loadOrders)
       </div>
       <div class="filter-field">
         <label>订单状态</label>
-        <el-select v-model="orderStatus" class="status-select" placeholder="全部状态" clearable>
+        <el-select
+          v-model="orderStatus"
+          class="status-select"
+          popper-class="platform-select-popper"
+          placeholder="全部状态"
+          clearable
+        >
           <el-option
             v-for="option in statusOptions"
             :key="option.value"
@@ -267,7 +273,7 @@ onMounted(loadOrders)
 
 <style scoped>
 .platform-page-head {
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
 
 .order-count {
@@ -275,19 +281,19 @@ onMounted(loadOrders)
   align-items: center;
   gap: 9px;
   padding: 8px 12px;
-  border: 1px solid #ebe9e7;
+  border: 1px solid #dbe6f5;
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.78);
 }
 
 .order-count > span {
   display: grid;
   place-items: center;
-  width: 29px;
-  height: 29px;
+  width: 34px;
+  height: 34px;
   border-radius: 8px;
-  color: #db3d2d;
-  background: #fff0ed;
+  color: #2f6fe4;
+  background: #eef4ff;
   font-size: 14px;
 }
 
@@ -306,7 +312,7 @@ onMounted(loadOrders)
 
 .order-count small {
   color: #9d9da5;
-  font-size: 8px;
+  font-size: 11px;
 }
 
 .filter-bar {
@@ -332,20 +338,20 @@ onMounted(loadOrders)
 
 .filter-field label {
   color: #8f8f98;
-  font-size: 9px;
+  font-size: 12px;
 }
 
 .filter-field :deep(.el-input__wrapper),
 .filter-field :deep(.el-select__wrapper) {
-  height: 32px;
-  border-radius: 7px;
+  height: 38px;
+  border-radius: 8px;
   box-shadow: 0 0 0 1px #e9e9ee inset;
 }
 
 .filter-field :deep(.el-input__inner),
 .filter-field :deep(.el-select__placeholder),
 .filter-field :deep(.el-select__selected-item) {
-  font-size: 10px;
+  font-size: 13px;
 }
 
 .status-select {
@@ -359,9 +365,9 @@ onMounted(loadOrders)
 }
 
 .filter-actions :deep(.el-button) {
-  height: 32px;
-  border-radius: 7px;
-  font-size: 10px;
+  height: 38px;
+  border-radius: 8px;
+  font-size: 13px;
 }
 
 .order-table-card {
@@ -377,33 +383,33 @@ onMounted(loadOrders)
 
 .table-head h2 {
   color: #45454d;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 650;
 }
 
 .table-head p {
   margin-top: 3px;
   color: #a5a5ad;
-  font-size: 8px;
+  font-size: 11px;
 }
 
 .order-table {
   width: 100%;
-  --el-table-header-bg-color: #fbfbfc;
-  --el-table-row-hover-bg-color: #fffaf8;
+  --el-table-header-bg-color: #f8faff;
+  --el-table-row-hover-bg-color: #f6f9ff;
 }
 
 .order-table :deep(th.el-table__cell) {
-  height: 39px;
+  height: 43px;
   padding: 0;
   border-bottom-color: #f2f2f5;
   color: #9797a0;
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 500;
 }
 
 .order-table :deep(td.el-table__cell) {
-  padding: 10px 0;
+  padding: 12px 0;
   border-bottom-color: #f5f5f7;
 }
 
@@ -420,13 +426,13 @@ onMounted(loadOrders)
 .order-cell strong {
   color: #5a5a62;
   font-family: 'DIN Alternate', 'Bahnschrift', sans-serif;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
 }
 
 .order-cell span {
   color: #ababb3;
-  font-size: 8px;
+  font-size: 11px;
 }
 
 .product-cell {
@@ -439,12 +445,12 @@ onMounted(loadOrders)
 .product-icon {
   display: grid;
   place-items: center;
-  width: 29px;
-  height: 29px;
+  width: 32px;
+  height: 32px;
   border-radius: 7px;
-  color: #de4430;
-  background: #fff1ee;
-  font-size: 13px;
+  color: #2f6fe4;
+  background: #eef4ff;
+  font-size: 14px;
 }
 
 .product-cell > div {
@@ -457,7 +463,7 @@ onMounted(loadOrders)
 .product-cell strong {
   overflow: hidden;
   color: #5a5a62;
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 500;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -465,7 +471,7 @@ onMounted(loadOrders)
 
 .product-cell span {
   color: #aaaab2;
-  font-size: 8px;
+  font-size: 11px;
 }
 
 .customer-cell {
@@ -482,7 +488,7 @@ onMounted(loadOrders)
   border-radius: 6px;
   color: #6c7ba7;
   background: #f0f3fa;
-  font-size: 8px;
+  font-size: 11px;
   font-weight: 600;
 }
 
@@ -494,19 +500,19 @@ onMounted(loadOrders)
 
 .customer-cell strong {
   color: #5c5c65;
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 500;
 }
 
 .customer-cell small {
   color: #aaaab2;
-  font-size: 8px;
+  font-size: 11px;
 }
 
 .amount {
   color: #d53e2d;
   font-family: 'DIN Alternate', 'Bahnschrift', sans-serif;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
 }
 
@@ -515,7 +521,7 @@ onMounted(loadOrders)
   flex-direction: column;
   gap: 2px;
   color: #b0b0b8;
-  font-size: 8px;
+  font-size: 11px;
 }
 
 .aftersale-cell .has-aftersale {
@@ -535,7 +541,7 @@ onMounted(loadOrders)
 .expand-block h4 {
   margin-bottom: 8px;
   color: #8e8e97;
-  font-size: 8px;
+  font-size: 11px;
   font-weight: 650;
   letter-spacing: 0.04em;
 }
@@ -558,9 +564,9 @@ onMounted(loadOrders)
   width: 24px;
   height: 24px;
   border-radius: 6px;
-  color: #dd4d38;
-  background: #fff1ee;
-  font-size: 11px;
+  color: #2f6fe4;
+  background: #eef4ff;
+  font-size: 13px;
 }
 
 .expand-item__copy {
@@ -572,19 +578,19 @@ onMounted(loadOrders)
 
 .expand-item__copy strong {
   color: #64646c;
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 500;
 }
 
 .expand-item__copy small {
   color: #ababb3;
-  font-size: 8px;
+  font-size: 11px;
 }
 
 .expand-item__price {
   color: #7e7e87;
   font-family: 'DIN Alternate', 'Bahnschrift', sans-serif;
-  font-size: 9px;
+  font-size: 12px;
 }
 
 .expand-info {
@@ -602,13 +608,13 @@ onMounted(loadOrders)
 
 .expand-info dt {
   color: #b0b0b8;
-  font-size: 8px;
+  font-size: 11px;
 }
 
 .expand-info dd {
   margin: 0;
   color: #73737c;
-  font-size: 8px;
+  font-size: 11px;
   line-height: 1.6;
 }
 
@@ -633,13 +639,13 @@ onMounted(loadOrders)
 .table-empty p {
   margin-top: 10px;
   color: #85858e;
-  font-size: 11px;
+  font-size: 13px;
 }
 
 .table-empty small {
   margin-top: 4px;
   color: #b1b1b9;
-  font-size: 9px;
+  font-size: 12px;
 }
 
 .table-footer {
@@ -653,13 +659,13 @@ onMounted(loadOrders)
 
 .table-footer > span {
   color: #aaaab2;
-  font-size: 9px;
+  font-size: 12px;
 }
 
 .table-footer :deep(.el-pagination) {
-  --el-pagination-button-width: 26px;
-  --el-pagination-button-height: 26px;
-  font-size: 9px;
+  --el-pagination-button-width: 32px;
+  --el-pagination-button-height: 32px;
+  font-size: 12px;
 }
 
 .table-footer :deep(.el-pagination.is-background .btn-prev),
@@ -670,7 +676,7 @@ onMounted(loadOrders)
 }
 
 .table-footer :deep(.el-pagination.is-background .el-pager li.is-active) {
-  background: #df3021;
+  background: #2f6fe4;
 }
 
 @media (max-width: 900px) {

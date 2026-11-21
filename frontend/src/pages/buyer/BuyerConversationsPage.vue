@@ -174,7 +174,6 @@ onBeforeUnmount(() => {
         <el-input
           v-model="keyword"
           :prefix-icon="Search"
-          size="small"
           placeholder="搜索会话或订单号"
           clearable
           @keyup.enter="search"
@@ -303,9 +302,9 @@ onBeforeUnmount(() => {
 <style scoped>
 .buyer-chat-page {
   display: grid;
-  grid-template-columns: 315px minmax(0, 1fr);
+  grid-template-columns: 340px minmax(0, 1fr);
   gap: 14px;
-  height: calc(100vh - 64px - 56px);
+  height: calc(100vh - 68px - 56px);
   min-height: 540px;
 }
 
@@ -344,18 +343,18 @@ onBeforeUnmount(() => {
 .list-count {
   display: grid;
   place-items: center;
-  min-width: 22px;
-  height: 22px;
+  min-width: 26px;
+  height: 26px;
   border-radius: 7px;
   color: #a1a1a9;
   background: #f5f5f8;
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .list-note {
   padding: 0 6px 9px;
   color: #a3a3ab;
-  font-size: 9px;
+  font-size: 12px;
   line-height: 1.65;
 }
 
@@ -364,13 +363,14 @@ onBeforeUnmount(() => {
 }
 
 .list-search :deep(.el-input__wrapper) {
-  border-radius: 7px;
+  height: 34px;
+  border-radius: 8px;
   background: #fafafb;
   box-shadow: 0 0 0 1px #ececf1 inset;
 }
 
 .list-search :deep(.el-input__inner) {
-  font-size: 10px;
+  font-size: 13px;
 }
 
 .conversation-list {
@@ -386,7 +386,7 @@ onBeforeUnmount(() => {
   gap: 9px;
   width: 100%;
   margin-bottom: 4px;
-  padding: 10px 8px;
+  padding: 12px 10px;
   border: 1px solid transparent;
   border-radius: 10px;
   text-align: left;
@@ -411,9 +411,9 @@ onBeforeUnmount(() => {
   position: relative;
   display: grid;
   place-items: center;
-  flex: 0 0 33px;
-  width: 33px;
-  height: 33px;
+  flex: 0 0 36px;
+  width: 36px;
+  height: 36px;
   margin-top: 1px;
   border-radius: 10px;
   color: #fff;
@@ -450,7 +450,7 @@ onBeforeUnmount(() => {
 .conversation-top strong {
   overflow: hidden;
   color: #4a4a51;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 600;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -459,13 +459,13 @@ onBeforeUnmount(() => {
 .conversation-top time {
   flex: 0 0 auto;
   color: #b2b2ba;
-  font-size: 8px;
+  font-size: 11px;
 }
 
 .conversation-preview {
   overflow: hidden;
   color: #9c9ca5;
-  font-size: 9px;
+  font-size: 12px;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -478,9 +478,9 @@ onBeforeUnmount(() => {
 }
 
 .conversation-meta :deep(.status-tag) {
-  height: 18px;
-  padding: 0 5px;
-  font-size: 8px;
+  height: 21px;
+  padding: 0 6px;
+  font-size: 11px;
 }
 
 .conversation-meta em {
@@ -489,7 +489,7 @@ onBeforeUnmount(() => {
   gap: 2px;
   overflow: hidden;
   color: #107c7c;
-  font-size: 8px;
+  font-size: 11px;
   font-style: normal;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -505,8 +505,8 @@ onBeforeUnmount(() => {
   align-items: center;
   gap: 10px;
   flex: 0 0 auto;
-  min-height: 64px;
-  padding: 11px 17px;
+  min-height: 72px;
+  padding: 13px 18px;
   border-bottom: 1px solid #f1f1f4;
   background: linear-gradient(180deg, #fffdfb, #fff);
 }
@@ -514,9 +514,9 @@ onBeforeUnmount(() => {
 .conversation-head__icon {
   display: grid;
   place-items: center;
-  flex: 0 0 37px;
-  width: 37px;
-  height: 37px;
+  flex: 0 0 40px;
+  width: 40px;
+  height: 40px;
   border-radius: 11px;
   color: #fff;
   background: linear-gradient(145deg, #ff9c63, #ea5520);
@@ -537,7 +537,7 @@ onBeforeUnmount(() => {
 
 .conversation-head__copy h2 {
   color: #3e3e45;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 650;
 }
 
@@ -547,7 +547,7 @@ onBeforeUnmount(() => {
   gap: 5px;
   margin-top: 4px;
   color: #a3a3ab;
-  font-size: 9px;
+  font-size: 12px;
 }
 
 .conversation-head__copy p span {
@@ -562,7 +562,7 @@ onBeforeUnmount(() => {
   border-radius: 4px;
   color: #0e7d7d;
   background: #eaf8f7;
-  font-size: 8px;
+  font-size: 11px;
 }
 
 .conversation-head__sync {
@@ -570,7 +570,7 @@ onBeforeUnmount(() => {
   align-items: center;
   gap: 5px;
   color: #b2b2ba;
-  font-size: 8px;
+  font-size: 11px;
 }
 
 .conversation-head__sync i {
@@ -586,11 +586,11 @@ onBeforeUnmount(() => {
   align-items: center;
   gap: 7px;
   flex: 0 0 auto;
-  padding: 8px 17px;
+  padding: 10px 18px;
   border-bottom: 1px solid #fff0d7;
   color: #ab740f;
   background: #fffaf0;
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .waiting-banner__dot {
@@ -613,18 +613,18 @@ onBeforeUnmount(() => {
   justify-content: space-between;
   gap: 12px;
   flex: 0 0 auto;
-  padding: 12px 17px;
+  padding: 13px 18px;
   border-top: 1px solid #f1f1f4;
   color: #a0a0a8;
   background: #fbfbfc;
-  font-size: 10px;
+  font-size: 13px;
 }
 
 .closed-foot button {
   padding: 0;
   color: #e85c1a;
   background: transparent;
-  font-size: 10px;
+  font-size: 13px;
   cursor: pointer;
 }
 
@@ -635,7 +635,7 @@ onBeforeUnmount(() => {
   gap: 7px;
   flex: 1;
   color: #a3a3ab;
-  font-size: 10px;
+  font-size: 12px;
 }
 
 @keyframes waiting-pulse {

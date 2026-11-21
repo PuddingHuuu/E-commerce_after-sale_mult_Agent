@@ -14,6 +14,7 @@ import type { Role } from '@/types/api'
 import { useAuthStore } from '@/stores/auth'
 import { roleMeta } from '@/utils/labels'
 import { showError } from '@/api/http'
+import RoleRail from '@/components/layout/RoleRail.vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -237,8 +238,13 @@ async function submitRegister(): Promise<void> {
 <template>
   <div
     class="auth-page"
+    :class="{ 'auth-page--platform': role === 'platform' }"
     :style="{ '--role-accent': meta.accent }"
   >
+    <div class="auth-switch">
+      <RoleRail />
+    </div>
+
     <div class="auth-backdrop auth-backdrop--one" />
     <div class="auth-backdrop auth-backdrop--two" />
 
@@ -441,12 +447,39 @@ async function submitRegister(): Promise<void> {
   align-items: stretch;
   gap: 48px;
   min-height: 100vh;
-  padding: 40px 150px 40px 56px;
+  padding: 40px 48px 40px 56px;
   overflow: hidden;
   background:
     radial-gradient(circle at 8% 8%, color-mix(in srgb, var(--role-accent) 12%, transparent), transparent 27%),
     radial-gradient(circle at 92% 88%, rgba(255, 178, 115, 0.12), transparent 24%),
     linear-gradient(135deg, #fcfbfa 0%, #f6f7f9 58%, #f2f3f5 100%);
+}
+
+.auth-page--platform {
+  background:
+    radial-gradient(circle at 8% 8%, rgba(47, 111, 228, 0.12), transparent 27%),
+    radial-gradient(circle at 92% 88%, rgba(76, 141, 255, 0.1), transparent 24%),
+    linear-gradient(135deg, #fbfcff 0%, #f6f8fd 58%, #f1f4fa 100%);
+}
+
+.auth-switch {
+  position: absolute;
+  z-index: 3;
+  top: 22px;
+  right: 24px;
+}
+
+.auth-page--platform .auth-backdrop--one {
+  background: rgba(47, 111, 228, 0.08);
+}
+
+.auth-page--platform .auth-backdrop--two {
+  background: rgba(76, 141, 255, 0.09);
+}
+
+.auth-page--platform .auth-brand__mark {
+  background: linear-gradient(145deg, #4c8dff, #2f6fe4);
+  box-shadow: 0 8px 18px rgba(47, 111, 228, 0.22);
 }
 
 .auth-backdrop {
@@ -516,7 +549,7 @@ async function submitRegister(): Promise<void> {
 
 .auth-brand small {
   color: #ababb3;
-  font-size: 8px;
+  font-size: 11px;
   letter-spacing: 0.12em;
 }
 
@@ -527,7 +560,7 @@ async function submitRegister(): Promise<void> {
 
 .auth-eyebrow {
   color: var(--role-accent);
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.16em;
 }
@@ -587,13 +620,13 @@ async function submitRegister(): Promise<void> {
 
 .auth-role-chip strong {
   color: #44444c;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 650;
 }
 
 .auth-role-chip small {
   color: #95959e;
-  font-size: 11px;
+  font-size: 13px;
   line-height: 1.55;
 }
 
@@ -609,7 +642,7 @@ async function submitRegister(): Promise<void> {
   align-items: center;
   gap: 7px;
   color: #74747e;
-  font-size: 11px;
+  font-size: 13px;
 }
 
 .auth-features span {
@@ -620,12 +653,12 @@ async function submitRegister(): Promise<void> {
   border-radius: 50%;
   color: var(--role-accent);
   background: color-mix(in srgb, var(--role-accent) 9%, #fff);
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .auth-hero__foot {
   color: #b5b5bd;
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 0.03em;
 }
 
@@ -633,9 +666,9 @@ async function submitRegister(): Promise<void> {
   position: relative;
   z-index: 2;
   align-self: center;
-  width: min(440px, 100%);
-  flex: 0 0 440px;
-  padding: 26px 27px 22px;
+  width: min(470px, 100%);
+  flex: 0 0 470px;
+  padding: 28px 29px 24px;
   border: 1px solid rgba(232, 232, 237, 0.9);
   border-radius: 22px;
   background: rgba(255, 255, 255, 0.94);
@@ -664,7 +697,7 @@ async function submitRegister(): Promise<void> {
   border-radius: 5px;
   color: var(--role-accent);
   background: color-mix(in srgb, var(--role-accent) 6%, #fff);
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 600;
 }
 
@@ -679,11 +712,11 @@ async function submitRegister(): Promise<void> {
 
 .auth-tabs button {
   flex: 1;
-  height: 33px;
-  border-radius: 7px;
+  height: 38px;
+  border-radius: 8px;
   color: #8e8e98;
   background: transparent;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
   cursor: pointer;
 }
@@ -715,12 +748,12 @@ async function submitRegister(): Promise<void> {
 
 .auth-field > span {
   color: #74747e;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 500;
 }
 
 .auth-field :deep(.el-input__wrapper) {
-  height: 40px;
+  height: 44px;
   border-radius: 9px;
   background: #fbfbfc;
   box-shadow: 0 0 0 1px #e8e8ee inset;
@@ -740,22 +773,22 @@ async function submitRegister(): Promise<void> {
 
 .auth-options :deep(.el-checkbox__label) {
   color: #74747e;
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .auth-options > span {
   color: #b1b1b9;
-  font-size: 9px;
+  font-size: 12px;
 }
 
 .auth-submit {
   width: 100%;
-  height: 42px;
+  height: 46px;
   margin-top: 2px;
-  border-radius: 9px;
+  border-radius: 10px;
   background: var(--role-accent);
   border-color: var(--role-accent);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
 }
 
@@ -778,32 +811,32 @@ async function submitRegister(): Promise<void> {
 
 .demo-hint span {
   color: #a5a5ae;
-  font-size: 9px;
+  font-size: 12px;
 }
 
 .demo-hint strong {
   color: #62626c;
   font-family: 'DIN Alternate', 'Bahnschrift', sans-serif;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.02em;
 }
 
 .demo-hint button {
   flex: 0 0 auto;
-  padding: 4px 8px;
+  padding: 6px 10px;
   border: 1px solid color-mix(in srgb, var(--role-accent) 18%, #e5e5eb);
   border-radius: 5px;
   color: var(--role-accent);
   background: #fff;
-  font-size: 9px;
+  font-size: 12px;
   cursor: pointer;
 }
 
 .auth-note {
   margin-top: 16px;
   color: #b4b4bb;
-  font-size: 9px;
+  font-size: 12px;
   line-height: 1.6;
   text-align: center;
 }
@@ -811,8 +844,13 @@ async function submitRegister(): Promise<void> {
 @media (max-width: 1150px) {
   .auth-page {
     gap: 28px;
-    padding-right: 140px;
+    padding-right: 32px;
     padding-left: 32px;
+  }
+
+  .auth-switch {
+    top: 18px;
+    right: 18px;
   }
 
   .auth-hero h1 {
@@ -820,7 +858,7 @@ async function submitRegister(): Promise<void> {
   }
 
   .auth-card {
-    flex-basis: 400px;
+    flex-basis: 430px;
   }
 }
 
@@ -828,7 +866,12 @@ async function submitRegister(): Promise<void> {
   .auth-page {
     display: block;
     min-height: 100dvh;
-    padding: 22px 16px 96px;
+    padding: 72px 16px 96px;
+  }
+
+  .auth-switch {
+    top: 16px;
+    right: 16px;
   }
 
   .auth-hero {

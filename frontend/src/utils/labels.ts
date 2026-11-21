@@ -18,7 +18,7 @@ export const roleMeta: Record<Role, { label: string; subtitle: string; home: str
     label: '平台客服',
     subtitle: '工单与会话工作台',
     home: '/platform/tickets',
-    accent: '#e1251b',
+    accent: '#2f6fe4',
   },
   merchant: {
     label: '商家',

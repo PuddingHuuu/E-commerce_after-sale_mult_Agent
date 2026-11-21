@@ -65,7 +65,7 @@ class Conversation(Base):
     messages: Mapped[list["ConversationMessage"]] = relationship(  # noqa: F821
         back_populates="conversation",
         cascade="all, delete-orphan",
-        order_by="ConversationMessage.id",
+        order_by="ConversationMessage.created_at, ConversationMessage.id",
         lazy="selectin",
     )
     tickets: Mapped[list["Ticket"]] = relationship(  # noqa: F821

@@ -180,16 +180,16 @@ onMounted(loadOrders)
 }
 
 .buyer-page-head p:last-child {
-  margin-top: 7px;
+  margin-top: 8px;
   color: #92929c;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .buyer-page-head :deep(.el-button) {
-  height: 38px;
-  padding: 0 16px;
+  height: 42px;
+  padding: 0 19px;
   border-radius: 9px;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   box-shadow: 0 8px 18px rgba(255, 80, 0, 0.16);
 }
@@ -206,21 +206,21 @@ onMounted(loadOrders)
   display: flex;
   gap: 4px;
   overflow-x: auto;
-  padding-top: 8px;
+  padding-top: 10px;
   border-bottom: 1px solid #f3f3f6;
 }
 
 .order-tabs button {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 5px;
   flex: 0 0 auto;
-  height: 35px;
-  padding: 0 11px;
+  height: 40px;
+  padding: 0 13px;
   border-bottom: 2px solid transparent;
   color: #85858f;
   background: transparent;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 500;
   cursor: pointer;
   transition:
@@ -241,13 +241,13 @@ onMounted(loadOrders)
 .order-tabs em {
   display: grid;
   place-items: center;
-  min-width: 15px;
-  height: 15px;
-  padding: 0 3px;
-  border-radius: 4px;
+  min-width: 19px;
+  height: 19px;
+  padding: 0 4px;
+  border-radius: 5px;
   color: #a0a0a8;
   background: #f5f5f8;
-  font-size: 8px;
+  font-size: 11px;
   font-style: normal;
 }
 
@@ -265,20 +265,20 @@ onMounted(loadOrders)
 }
 
 .order-search :deep(.el-input__wrapper) {
-  height: 33px;
+  height: 38px;
   border-radius: 8px;
   background: #fafafb;
   box-shadow: 0 0 0 1px #ececf1 inset;
 }
 
 .order-search :deep(.el-input__inner) {
-  font-size: 11px;
+  font-size: 13px;
 }
 
 .order-search :deep(.el-button) {
-  height: 33px;
+  height: 38px;
   border-radius: 8px;
-  font-size: 11px;
+  font-size: 13px;
 }
 
 .orders-area {
@@ -303,13 +303,13 @@ onMounted(loadOrders)
 
 .list-pagination > span {
   color: #aaaab2;
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .list-pagination :deep(.el-pagination) {
-  --el-pagination-button-width: 28px;
-  --el-pagination-button-height: 28px;
-  font-size: 10px;
+  --el-pagination-button-width: 32px;
+  --el-pagination-button-height: 32px;
+  font-size: 12px;
 }
 
 .list-pagination :deep(.el-pagination.is-background .btn-prev),

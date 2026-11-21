@@ -4,7 +4,7 @@ from decimal import Decimal
 from pathlib import Path
 from typing import Any
 
-from sqlalchemy import func, select
+from sqlalchemy import delete, func, select, update
 from sqlalchemy.orm import Session
 
 from app.core.security import hash_password
@@ -248,8 +248,9 @@ def _seed_demo_tickets_if_empty(
         description="订单显示已发货，但物流多日没有更新，希望人工核实。",
         category="logistics",
         confidence=0.91,
-        status="waiting_human",
+        status="human_processing",
         priority="high",
+        assignee_id=platform.id,
         ai_reply="已为您整理订单物流信息，建议转人工进一步核实。",
         ai_result_json={
             "category": "logistics",
@@ -268,32 +269,6 @@ def _seed_demo_tickets_if_empty(
         ]
     )
     transfer_order.after_sale_status = "processing"
-
-    transfer_conversation = Conversation(
-        customer_id=customer.id,
-        order_id=transfer_order.id,
-        status="waiting",
-        last_message="AI 已完成初步处理，等待人工客服接入。",
-        created_at=now - timedelta(hours=2, minutes=40),
-        updated_at=now - timedelta(hours=2, minutes=40),
-    )
-    transfer_ticket.conversation = transfer_conversation
-    transfer_conversation.messages.extend(
-        [
-            ConversationMessage(
-                sender_type="system",
-                content="AI 已完成初步处理，因物流问题需要人工核实，已为您转接人工客服。",
-                created_at=now - timedelta(hours=2, minutes=40),
-            ),
-            ConversationMessage(
-                sender_type="customer",
-                sender_id=customer.id,
-                content="麻烦帮我确认一下物流到底到哪里了，谢谢。",
-                created_at=now - timedelta(hours=2, minutes=35),
-            ),
-        ]
-    )
-    transfer_conversation.last_message = "麻烦帮我确认一下物流到底到哪里了，谢谢。"
 
     human_ticket = Ticket(
         ticket_no="AS-DEMO-0003",
@@ -325,20 +300,21 @@ def _seed_demo_tickets_if_empty(
     )
     human_order.after_sale_status = "processing"
 
-    human_conversation = Conversation(
+    demo_conversation = Conversation(
         customer_id=customer.id,
-        order_id=human_order.id,
+        order_id=transfer_order.id,
         status="human",
         assigned_agent_id=platform.id,
         merchant_id=merchant.id,
         merchant_invited_at=now - timedelta(hours=4),
         merchant_invited_by=platform.id,
-        last_message="您好，这里是商家客服，我来协助处理换货。",
+        last_message="麻烦帮我确认一下物流到底到哪里了，谢谢。",
         created_at=now - timedelta(days=1, hours=3),
-        updated_at=now - timedelta(hours=3),
+        updated_at=now - timedelta(hours=2, minutes=35),
     )
-    human_ticket.conversation = human_conversation
-    human_conversation.messages.extend(
+    human_ticket.conversation = demo_conversation
+    transfer_ticket.conversation = demo_conversation
+    demo_conversation.messages.extend(
         [
             ConversationMessage(
                 sender_type="system",
@@ -366,6 +342,17 @@ def _seed_demo_tickets_if_empty(
                 sender_id=merchant.user_id,
                 content="您好，这里是商家客服，我来协助处理换货，请确认商品吊牌是否完整。",
                 created_at=now - timedelta(hours=3),
+            ),
+            ConversationMessage(
+                sender_type="system",
+                content="AI 已完成初步处理，因物流问题需要人工核实，已为您转接人工客服。",
+                created_at=now - timedelta(hours=2, minutes=40),
+            ),
+            ConversationMessage(
+                sender_type="customer",
+                sender_id=customer.id,
+                content="麻烦帮我确认一下物流到底到哪里了，谢谢。",
+                created_at=now - timedelta(hours=2, minutes=35),
             ),
         ]
     )
@@ -400,9 +387,89 @@ def _seed_demo_tickets_if_empty(
     db.flush()
 
 
+_CONVERSATION_PRIORITY = {"human": 3, "waiting": 2, "closed": 1}
+
+
+def _consolidate_customer_conversations(db: Session) -> None:
+    """Merge legacy duplicate conversations so each consumer has one platform dialog."""
+    customer_ids = db.scalars(
+        select(Conversation.customer_id)
+        .group_by(Conversation.customer_id)
+        .having(func.count(Conversation.id) > 1)
+    ).all()
+
+    for customer_id in customer_ids:
+        conversations = db.scalars(
+            select(Conversation).where(Conversation.customer_id == customer_id)
+        ).all()
+        if len(conversations) <= 1:
+            continue
+
+        canonical = max(
+            conversations,
+            key=lambda item: (_CONVERSATION_PRIORITY.get(item.status, 0), item.updated_at),
+        )
+        duplicates = [item for item in conversations if item.id != canonical.id]
+        duplicate_ids = [item.id for item in duplicates]
+        latest_conversation = max(conversations, key=lambda item: item.updated_at)
+        newest_human = max(
+            [item for item in conversations if item.status == "human"] or [canonical],
+            key=lambda item: item.updated_at,
+        )
+        merchant_source = max(
+            [item for item in conversations if item.merchant_id],
+            key=lambda item: item.updated_at,
+            default=None,
+        )
+
+        db.execute(
+            update(ConversationMessage)
+            .where(ConversationMessage.conversation_id.in_(duplicate_ids))
+            .values(conversation_id=canonical.id)
+        )
+        db.execute(
+            update(Ticket)
+            .where(Ticket.conversation_id.in_(duplicate_ids))
+            .values(conversation_id=canonical.id)
+        )
+        db.execute(delete(Conversation).where(Conversation.id.in_(duplicate_ids)))
+        db.flush()
+
+        latest_message = db.scalar(
+            select(ConversationMessage)
+            .where(ConversationMessage.conversation_id == canonical.id)
+            .order_by(
+                ConversationMessage.created_at.desc(),
+                ConversationMessage.id.desc(),
+            )
+            .limit(1)
+        )
+        canonical.order_id = latest_conversation.order_id or canonical.order_id
+        canonical.created_at = min(item.created_at for item in conversations)
+        canonical.updated_at = max(
+            [item.updated_at for item in conversations]
+            + ([latest_message.created_at] if latest_message else [])
+        )
+        if latest_message is not None:
+            canonical.last_message = latest_message.content[:500]
+        canonical.assigned_agent_id = newest_human.assigned_agent_id
+        canonical.merchant_id = merchant_source.merchant_id if merchant_source else None
+        canonical.merchant_invited_at = (
+            merchant_source.merchant_invited_at if merchant_source else None
+        )
+        canonical.merchant_invited_by = (
+            merchant_source.merchant_invited_by if merchant_source else None
+        )
+        if canonical.status != "closed":
+            canonical.closed_at = None
+
+    db.flush()
+
+
 def seed_demo_data(db: Session) -> None:
     """Seed demo accounts and data once. Safe to call on every startup."""
     customer, platform, merchant = _ensure_users(db)
     _seed_orders_if_empty(db)
     _seed_demo_tickets_if_empty(db, customer, platform, merchant)
+    _consolidate_customer_conversations(db)
     db.commit()

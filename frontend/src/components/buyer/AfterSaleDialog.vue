@@ -96,7 +96,8 @@ async function submit(): Promise<void> {
 <template>
   <el-dialog
     v-model="visible"
-    width="570px"
+    class="after-sale-dialog"
+    width="620px"
     :close-on-click-modal="false"
     append-to-body
   >
@@ -197,9 +198,9 @@ async function submit(): Promise<void> {
 .dialog-head__icon {
   display: grid;
   place-items: center;
-  flex: 0 0 40px;
-  width: 40px;
-  height: 40px;
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
   border-radius: 12px;
   color: #eb5a16;
   background: #fff2e9;
@@ -215,15 +216,15 @@ async function submit(): Promise<void> {
 .dialog-head p {
   margin-top: 4px;
   color: #9b9ba4;
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .dialog-tip {
   display: flex;
   align-items: flex-start;
-  gap: 7px;
+  gap: 8px;
   margin-bottom: 16px;
-  padding: 10px 11px;
+  padding: 12px 13px;
   border: 1px solid #ffe3d5;
   border-radius: 9px;
   color: #946e59;
@@ -236,14 +237,25 @@ async function submit(): Promise<void> {
 }
 
 .dialog-tip p {
-  font-size: 9px;
+  font-size: 13px;
   line-height: 1.75;
 }
 
 .after-sale-form :deep(.el-form-item__label) {
-  padding-bottom: 5px;
+  padding-bottom: 6px;
   color: #6f6f78;
-  font-size: 10px;
+  font-size: 13px;
+}
+
+.after-sale-form :deep(.el-input__wrapper),
+.after-sale-form :deep(.el-select__wrapper) {
+  min-height: 38px;
+  border-radius: 8px;
+}
+
+.after-sale-form :deep(.el-select__wrapper),
+.after-sale-form :deep(.el-input__inner) {
+  font-size: 13px;
 }
 
 .after-sale-form :deep(.el-form-item) {
@@ -264,12 +276,12 @@ async function submit(): Promise<void> {
 .order-option__icon {
   display: grid;
   place-items: center;
-  width: 27px;
-  height: 27px;
+  width: 30px;
+  height: 30px;
   border-radius: 7px;
   color: #e4612a;
   background: #fff3ec;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .order-option__copy {
@@ -283,7 +295,7 @@ async function submit(): Promise<void> {
 .order-option__copy strong {
   overflow: hidden;
   color: #505058;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 500;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -291,13 +303,13 @@ async function submit(): Promise<void> {
 
 .order-option__copy small {
   color: #a4a4ac;
-  font-size: 8px;
+  font-size: 11px;
 }
 
 .warning {
   margin-top: 5px;
   color: #c2861a;
-  font-size: 9px;
+  font-size: 12px;
 }
 
 .selected-note {
@@ -305,7 +317,14 @@ async function submit(): Promise<void> {
   border-radius: 7px;
   color: #9c9ca5;
   background: #f8f8fa;
-  font-size: 9px;
+  font-size: 12px;
+}
+
+:global(.after-sale-dialog .el-dialog__footer .el-button) {
+  height: 36px;
+  padding: 0 18px;
+  border-radius: 8px;
+  font-size: 13px;
 }
 
 @media (max-width: 620px) {

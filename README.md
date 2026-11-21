@@ -75,7 +75,7 @@
 ├─ tests/                            # FastAPI + SQLite 测试
 ├─ .env                              # 本地密钥配置（不提交）
 ├─ .env.example                      # 可提交的环境变量模板
-├─ main.py                           # 兼容入口：from app.main import app
+├─ main.py                           # 兼容入口，也可直接在 PyCharm 运行启动后端
 └─ pyproject.toml
 ```
 
@@ -120,9 +120,38 @@ LLM_MODEL=deepseek-flash
 
 ### 2. 启动后端
 
+先明确入口约定：
+
+| 文件 / 方式 | 作用 |
+| --- | --- |
+| `app/main.py` | FastAPI 应用定义；`app.main:app` 是标准 ASGI 入口 |
+| 根目录 `main.py` | 可选的 PyCharm 一键启动器，不承载业务逻辑 |
+| `uvicorn app.main:app` | 推荐的日常开发启动方式 |
+| PyCharm FastAPI 配置 | 推荐的可调试启动方式 |
+
+不要直接运行 `app/main.py`；它只定义应用，不会自己监听端口。
+
+命令行方式：
+
 ```bash
 uv sync
 uv run uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
+```
+
+PyCharm 方式：
+
+- 方式一：直接 Run 根目录的 `main.py`。该文件会启动 uvicorn；默认不带自动重载。
+- 方式二：使用 PyCharm 的 FastAPI Run Configuration：
+  - 目标：`app.main:app`
+  - Working directory：项目根目录
+  - Python interpreter：项目 `.venv`
+
+`.env` 现在通过项目根目录的绝对路径加载，即使 PyCharm 的 Working directory 不是项目根目录也能读取。
+
+启动前确认 8000 端口空闲：
+
+```powershell
+netstat -ano | findstr :8000
 ```
 
 接口文档：<http://127.0.0.1:8000/docs>
@@ -244,6 +273,29 @@ uv run pytest -q
 cd frontend
 npm run build
 ```
+
+## 数据库名称对照
+
+当前应用连接：
+
+```text
+100.73.70.4:3306 / after_sale_agent
+```
+
+| 英文名称 | 中文含义 |
+| --- | --- |
+| `after_sale_agent` | 售后 Agent 系统数据库 |
+| `users` | 用户账号表 |
+| `auth_sessions` | 登录会话表 |
+| `merchants` | 商家资料表 |
+| `orders` | 订单主表 |
+| `order_items` | 订单商品明细表 |
+| `tickets` | 售后工单表 |
+| `ticket_agent_runs` | Agent 执行记录表 |
+| `conversations` | 人工会话表 |
+| `conversation_messages` | 会话消息表 |
+
+> DataGrip 里请展开 **`@100.73.70.4`** 数据源下的 `after_sale_agent`，不要看旧的 `docker-mysql`（`192.168.100.132`）。
 
 ## 数据库脚本
 

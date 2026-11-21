@@ -3,6 +3,7 @@ import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import { ChatDotRound, ShoppingBag } from '@element-plus/icons-vue'
+import RoleRail from '@/components/layout/RoleRail.vue'
 import { useAuthStore } from '@/stores/auth'
 
 const router = useRouter()
@@ -37,6 +38,8 @@ async function logout(): Promise<void> {
           <span class="merchant-user__avatar">{{ user?.display_name?.slice(0, 1) || '商' }}</span>
           <button type="button" class="merchant-logout" @click="logout">退出</button>
         </div>
+
+        <RoleRail class="merchant-role-switch" />
       </div>
     </header>
 
@@ -59,7 +62,7 @@ async function logout(): Promise<void> {
   position: sticky;
   z-index: 20;
   top: 0;
-  height: 62px;
+  height: 68px;
   border-bottom: 1px solid rgba(220, 234, 234, 0.9);
   background:
     radial-gradient(circle at 4% -30%, rgba(29, 180, 172, 0.16), transparent 30%),
@@ -70,7 +73,7 @@ async function logout(): Promise<void> {
   display: flex;
   align-items: center;
   gap: 28px;
-  width: min(1240px, calc(100% - 44px));
+  width: min(1400px, calc(100% - 36px));
   height: 100%;
   margin: 0 auto;
 }
@@ -84,9 +87,9 @@ async function logout(): Promise<void> {
 .merchant-brand__mark {
   display: grid;
   place-items: center;
-  width: 33px;
-  height: 33px;
-  border-radius: 10px;
+  width: 36px;
+  height: 36px;
+  border-radius: 11px;
   color: #fff;
   background: linear-gradient(145deg, #3ac6bd, #0f8584);
   font-size: 16px;
@@ -100,13 +103,13 @@ async function logout(): Promise<void> {
 
 .merchant-brand__copy strong {
   color: #f0fafa;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
 }
 
 .merchant-brand__copy small {
   color: #5f8d8f;
-  font-size: 7px;
+  font-size: 11px;
   letter-spacing: 0.12em;
 }
 
@@ -119,13 +122,13 @@ async function logout(): Promise<void> {
 .merchant-nav span {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  height: 30px;
-  padding: 0 10px;
-  border-radius: 7px;
+  gap: 6px;
+  height: 36px;
+  padding: 0 13px;
+  border-radius: 9px;
   color: #d3f0ee;
   background: rgba(45, 179, 171, 0.18);
-  font-size: 10px;
+  font-size: 13px;
 }
 
 .merchant-user {
@@ -139,7 +142,7 @@ async function logout(): Promise<void> {
   max-width: 220px;
   overflow: hidden;
   color: #b9d9d7;
-  font-size: 9px;
+  font-size: 12px;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -147,21 +150,21 @@ async function logout(): Promise<void> {
 .merchant-user__avatar {
   display: grid;
   place-items: center;
-  width: 27px;
-  height: 27px;
-  border-radius: 8px;
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
   color: #fff;
   background: linear-gradient(145deg, #3bc9c1, #117f7e);
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
 }
 
 .merchant-logout {
-  margin-left: 3px;
-  padding: 4px 4px;
+  margin-left: 4px;
+  padding: 5px 6px;
   color: #5f8a8c;
   background: transparent;
-  font-size: 8px;
+  font-size: 12px;
   cursor: pointer;
 }
 
@@ -169,15 +172,31 @@ async function logout(): Promise<void> {
   color: #7ee1db;
 }
 
+.merchant-role-switch {
+  margin-left: 2px;
+}
+
 .merchant-main {
-  width: min(1240px, calc(100% - 44px));
+  width: min(1400px, calc(100% - 36px));
   margin: 0 auto;
-  padding: 20px 0 30px;
+  padding: 22px 0 32px;
+}
+
+@media (max-width: 1150px) {
+  .merchant-header__inner {
+    gap: 16px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .merchant-store {
+    display: none;
+  }
 }
 
 @media (max-width: 860px) {
   .merchant-header {
-    height: 54px;
+    height: 60px;
   }
 
   .merchant-header__inner {
@@ -193,13 +212,14 @@ async function logout(): Promise<void> {
   }
 
   .merchant-brand__mark {
-    width: 29px;
-    height: 29px;
-    font-size: 14px;
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    font-size: 16px;
   }
 
   .merchant-brand__copy strong {
-    font-size: 11px;
+    font-size: 13px;
   }
 
   .merchant-main {

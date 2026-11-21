@@ -267,16 +267,16 @@ onMounted(loadTickets)
 
 <style scoped>
 .platform-page-head {
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
 
 .head-hint {
   flex: 0 0 auto;
   padding: 8px 12px;
-  border: 1px solid #ebe7e5;
+  border: 1px solid #dbe6f5;
   border-radius: 10px;
   text-align: right;
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.78);
 }
 
 .head-hint span {
@@ -284,14 +284,14 @@ onMounted(loadTickets)
   align-items: center;
   gap: 4px;
   color: #6f6f78;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 550;
 }
 
 .head-hint p {
   margin-top: 3px;
   color: #ababb3;
-  font-size: 8px;
+  font-size: 11px;
 }
 
 .ticket-workspace {
@@ -318,13 +318,13 @@ onMounted(loadTickets)
 .group-tabs button {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  height: 29px;
-  padding: 0 10px;
-  border-radius: 6px;
+  gap: 6px;
+  height: 34px;
+  padding: 0 12px;
+  border-radius: 7px;
   color: #94949e;
   background: transparent;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 500;
   cursor: pointer;
   transition:
@@ -333,37 +333,37 @@ onMounted(loadTickets)
 }
 
 .group-tabs button:hover {
-  color: #54545c;
-  background: #f7f7f9;
+  color: #3f5d93;
+  background: #f3f7ff;
 }
 
 .group-tabs button.is-active {
-  color: #dc3020;
-  background: #fff0ed;
+  color: #2f6fe4;
+  background: #eef4ff;
   font-weight: 600;
 }
 
 .group-tabs em {
   display: grid;
   place-items: center;
-  min-width: 16px;
-  height: 16px;
-  padding: 0 3px;
-  border-radius: 4px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 4px;
+  border-radius: 5px;
   background: rgba(130, 130, 140, 0.09);
-  font-size: 8px;
+  font-size: 11px;
   font-style: normal;
 }
 
 .group-tabs button.is-active em {
-  color: #dc3020;
-  background: rgba(220, 48, 32, 0.09);
+  color: #2f6fe4;
+  background: rgba(47, 111, 228, 0.1);
 }
 
 .refresh-button {
-  height: 28px;
-  border-radius: 6px;
-  font-size: 9px;
+  height: 34px;
+  border-radius: 7px;
+  font-size: 13px;
 }
 
 .search-bar {
@@ -375,40 +375,40 @@ onMounted(loadTickets)
 }
 
 .search-bar :deep(.el-input__wrapper) {
-  height: 32px;
-  border-radius: 7px;
+  height: 38px;
+  border-radius: 8px;
   background: #fff;
   box-shadow: 0 0 0 1px #e9e9ee inset;
 }
 
 .search-bar :deep(.el-input__inner) {
-  font-size: 10px;
+  font-size: 13px;
 }
 
 .search-bar :deep(.el-button) {
-  height: 32px;
-  border-radius: 7px;
-  font-size: 10px;
+  height: 38px;
+  border-radius: 8px;
+  font-size: 13px;
 }
 
 .ticket-table {
   width: 100%;
   cursor: pointer;
-  --el-table-header-bg-color: #fbfbfc;
-  --el-table-row-hover-bg-color: #fffaf8;
+  --el-table-header-bg-color: #f8faff;
+  --el-table-row-hover-bg-color: #f6f9ff;
 }
 
 .ticket-table :deep(th.el-table__cell) {
-  height: 39px;
+  height: 43px;
   padding: 0;
   border-bottom-color: #f2f2f5;
   color: #9797a0;
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 500;
 }
 
 .ticket-table :deep(td.el-table__cell) {
-  padding: 10px 0;
+  padding: 12px 0;
   border-bottom-color: #f5f5f7;
 }
 
@@ -429,7 +429,7 @@ onMounted(loadTickets)
 .ticket-type-line strong {
   overflow: hidden;
   color: #505058;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 550;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -440,14 +440,14 @@ onMounted(loadTickets)
   width: 6px;
   height: 6px;
   border-radius: 2px;
-  background: #e24a35;
+  background: #2f6fe4;
   transform: rotate(45deg);
 }
 
 .ticket-no-cell > span {
   color: #ababb3;
   font-family: 'DIN Alternate', 'Bahnschrift', sans-serif;
-  font-size: 8px;
+  font-size: 11px;
 }
 
 .customer-cell {
@@ -464,7 +464,7 @@ onMounted(loadTickets)
   border-radius: 7px;
   color: #6d7ca8;
   background: #f1f4fa;
-  font-size: 8px;
+  font-size: 11px;
   font-weight: 600;
 }
 
@@ -476,24 +476,24 @@ onMounted(loadTickets)
 
 .customer-cell strong {
   color: #5d5d65;
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 500;
 }
 
 .customer-cell small {
   color: #aaaab2;
-  font-size: 8px;
+  font-size: 11px;
 }
 
 .order-no {
   color: #8d8d96;
   font-family: 'DIN Alternate', 'Bahnschrift', sans-serif;
-  font-size: 9px;
+  font-size: 12px;
 }
 
 .assignee {
   color: #83838c;
-  font-size: 9px;
+  font-size: 12px;
 }
 
 .updated-cell {
@@ -504,12 +504,12 @@ onMounted(loadTickets)
 
 .updated-cell span {
   color: #7e7e87;
-  font-size: 9px;
+  font-size: 12px;
 }
 
 .updated-cell small {
   color: #b1b1b9;
-  font-size: 8px;
+  font-size: 11px;
 }
 
 .view-link {
@@ -519,12 +519,12 @@ onMounted(loadTickets)
   padding: 0;
   color: #9a9aa3;
   background: transparent;
-  font-size: 9px;
+  font-size: 12px;
   cursor: pointer;
 }
 
 .view-link:hover {
-  color: #db3222;
+  color: #2f6fe4;
 }
 
 .table-empty {
@@ -548,13 +548,13 @@ onMounted(loadTickets)
 .table-empty p {
   margin-top: 10px;
   color: #85858e;
-  font-size: 11px;
+  font-size: 13px;
 }
 
 .table-empty small {
   margin-top: 4px;
   color: #b1b1b9;
-  font-size: 9px;
+  font-size: 12px;
 }
 
 .table-footer {
@@ -568,13 +568,13 @@ onMounted(loadTickets)
 
 .table-footer > span {
   color: #aaaab2;
-  font-size: 9px;
+  font-size: 12px;
 }
 
 .table-footer :deep(.el-pagination) {
-  --el-pagination-button-width: 26px;
-  --el-pagination-button-height: 26px;
-  font-size: 9px;
+  --el-pagination-button-width: 32px;
+  --el-pagination-button-height: 32px;
+  font-size: 12px;
 }
 
 .table-footer :deep(.el-pagination.is-background .btn-prev),
@@ -585,7 +585,7 @@ onMounted(loadTickets)
 }
 
 .table-footer :deep(.el-pagination.is-background .el-pager li.is-active) {
-  background: #df3021;
+  background: #2f6fe4;
 }
 
 @media (max-width: 900px) {

@@ -186,6 +186,7 @@ async function closeConversation(): Promise<void> {
         confirmButtonText: '结束会话',
         cancelButtonText: '取消',
         type: 'warning',
+        customClass: 'platform-message-box',
       },
     )
     await platformApi.closeConversation(selectedConversation.value.id)
@@ -531,7 +532,8 @@ onBeforeUnmount(() => {
 
     <el-dialog
       v-model="inviteVisible"
-      width="510px"
+      class="platform-dialog"
+      width="560px"
       title="邀请商家加入会话"
       append-to-body
       :close-on-click-modal="false"
@@ -589,7 +591,7 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .conversations-head {
-  margin-bottom: 15px;
+  margin-bottom: 18px;
 }
 
 .online-summary {
@@ -598,7 +600,7 @@ onBeforeUnmount(() => {
   align-items: flex-end;
   gap: 4px;
   color: #9a9aa3;
-  font-size: 9px;
+  font-size: 12px;
 }
 
 .online-summary span {
@@ -616,15 +618,15 @@ onBeforeUnmount(() => {
 
 .online-summary strong {
   color: #6e6e77;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 500;
 }
 
 .conversation-workspace {
   display: grid;
-  grid-template-columns: 300px minmax(0, 1fr) 280px;
+  grid-template-columns: 320px minmax(0, 1fr) 300px;
   gap: 12px;
-  height: calc(100vh - 58px - 108px);
+  height: calc(100vh - 68px - 108px);
   min-height: 570px;
 }
 
@@ -655,37 +657,37 @@ onBeforeUnmount(() => {
 .filter-tabs button {
   display: inline-flex;
   align-items: center;
-  gap: 3px;
+  gap: 4px;
   flex: 0 0 auto;
-  height: 27px;
-  padding: 0 7px;
-  border-radius: 6px;
+  height: 32px;
+  padding: 0 9px;
+  border-radius: 7px;
   color: #96969f;
   background: transparent;
-  font-size: 9px;
+  font-size: 12px;
   cursor: pointer;
 }
 
 .filter-tabs button:hover {
-  color: #5d5d65;
-  background: #f8f8fa;
+  color: #3f5d93;
+  background: #f3f7ff;
 }
 
 .filter-tabs button.is-active {
-  color: #da3021;
-  background: #fff0ed;
+  color: #2f6fe4;
+  background: #eef4ff;
   font-weight: 600;
 }
 
 .filter-tabs em {
   display: grid;
   place-items: center;
-  min-width: 14px;
-  height: 14px;
-  padding: 0 3px;
-  border-radius: 4px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  border-radius: 5px;
   background: rgba(130, 130, 140, 0.09);
-  font-size: 7px;
+  font-size: 11px;
   font-style: normal;
 }
 
@@ -694,14 +696,14 @@ onBeforeUnmount(() => {
 }
 
 .list-search :deep(.el-input__wrapper) {
-  height: 29px;
-  border-radius: 7px;
+  height: 34px;
+  border-radius: 8px;
   background: #fafafb;
   box-shadow: 0 0 0 1px #efeff3 inset;
 }
 
 .list-search :deep(.el-input__inner) {
-  font-size: 9px;
+  font-size: 12px;
 }
 
 .conversation-list {
@@ -717,9 +719,9 @@ onBeforeUnmount(() => {
   gap: 8px;
   width: 100%;
   margin-bottom: 3px;
-  padding: 9px 7px;
+  padding: 11px 9px;
   border: 1px solid transparent;
-  border-radius: 9px;
+  border-radius: 10px;
   text-align: left;
   background: transparent;
   cursor: pointer;
@@ -729,27 +731,27 @@ onBeforeUnmount(() => {
 }
 
 .conversation-item:hover {
-  background: #fbfafb;
+  background: #f7faff;
 }
 
 .conversation-item.is-active {
-  border-color: #ffdcd6;
-  background: linear-gradient(135deg, #fff8f6, #fff1ee);
-  box-shadow: inset 2px 0 0 #dc3123;
+  border-color: #dbe6f5;
+  background: linear-gradient(135deg, #f5f8ff, #eef4ff);
+  box-shadow: inset 2px 0 0 #2f6fe4;
 }
 
 .conversation-avatar {
   position: relative;
   display: grid;
   place-items: center;
-  flex: 0 0 31px;
-  width: 31px;
-  height: 31px;
+  flex: 0 0 34px;
+  width: 34px;
+  height: 34px;
   margin-top: 1px;
   border-radius: 9px;
   color: #fff;
   background: linear-gradient(145deg, #869ed8, #5a73b7);
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
 }
 
@@ -781,20 +783,20 @@ onBeforeUnmount(() => {
 
 .conversation-top strong {
   color: #4e4e56;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
 }
 
 .conversation-top time {
   flex: 0 0 auto;
   color: #b2b2ba;
-  font-size: 7px;
+  font-size: 11px;
 }
 
 .conversation-order {
   overflow: hidden;
   color: #8f8f98;
-  font-size: 8px;
+  font-size: 11px;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -802,7 +804,7 @@ onBeforeUnmount(() => {
 .conversation-preview {
   overflow: hidden;
   color: #a8a8b0;
-  font-size: 8px;
+  font-size: 11px;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -814,9 +816,9 @@ onBeforeUnmount(() => {
 }
 
 .conversation-meta :deep(.status-tag) {
-  height: 17px;
-  padding: 0 5px;
-  font-size: 7px;
+  height: 20px;
+  padding: 0 6px;
+  font-size: 11px;
 }
 
 .merchant-joined {
@@ -824,7 +826,7 @@ onBeforeUnmount(() => {
   align-items: center;
   gap: 2px;
   color: #0f7b7b;
-  font-size: 7px;
+  font-size: 11px;
   font-style: normal;
 }
 
@@ -839,8 +841,8 @@ onBeforeUnmount(() => {
   align-items: center;
   gap: 9px;
   flex: 0 0 auto;
-  min-height: 63px;
-  padding: 10px 14px;
+  min-height: 72px;
+  padding: 12px 16px;
   border-bottom: 1px solid #f1f1f4;
 }
 
@@ -848,13 +850,13 @@ onBeforeUnmount(() => {
   position: relative;
   display: grid;
   place-items: center;
-  flex: 0 0 35px;
-  width: 35px;
-  height: 35px;
+  flex: 0 0 38px;
+  width: 38px;
+  height: 38px;
   border-radius: 10px;
   color: #fff;
   background: linear-gradient(145deg, #879ed8, #5a72b3);
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 600;
 }
 
@@ -883,7 +885,7 @@ onBeforeUnmount(() => {
 
 .conversation-head__copy h2 {
   color: #3f3f46;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 650;
 }
 
@@ -891,7 +893,7 @@ onBeforeUnmount(() => {
   margin-top: 4px;
   overflow: hidden;
   color: #a3a3ab;
-  font-size: 8px;
+  font-size: 11px;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -909,7 +911,7 @@ onBeforeUnmount(() => {
   border-radius: 3px;
   color: #0c7777;
   background: #eaf8f7;
-  font-size: 7px;
+  font-size: 11px;
 }
 
 .conversation-actions {
@@ -920,10 +922,10 @@ onBeforeUnmount(() => {
 }
 
 .conversation-actions :deep(.el-button) {
-  height: 28px;
-  padding: 0 9px;
-  border-radius: 6px;
-  font-size: 9px;
+  height: 34px;
+  padding: 0 12px;
+  border-radius: 7px;
+  font-size: 13px;
 }
 
 .close-action {
@@ -933,12 +935,12 @@ onBeforeUnmount(() => {
   padding: 4px 0;
   color: #a5a5ad;
   background: transparent;
-  font-size: 8px;
+  font-size: 11px;
   cursor: pointer;
 }
 
 .close-action:hover {
-  color: #d83627;
+  color: #2f6fe4;
 }
 
 .waiting-banner {
@@ -961,7 +963,7 @@ onBeforeUnmount(() => {
   border-radius: 7px;
   color: #d28a03;
   background: #fff0d2;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .waiting-banner > div {
@@ -971,18 +973,18 @@ onBeforeUnmount(() => {
 
 .waiting-banner strong {
   color: #856015;
-  font-size: 9px;
+  font-size: 12px;
 }
 
 .waiting-banner p {
   margin-top: 2px;
   color: #b7985d;
-  font-size: 8px;
+  font-size: 11px;
 }
 
 .waiting-banner :deep(.el-button) {
-  height: 25px;
-  font-size: 8px;
+  height: 30px;
+  font-size: 12px;
 }
 
 .closed-banner {
@@ -995,7 +997,7 @@ onBeforeUnmount(() => {
   border-radius: 7px;
   color: #8d8d96;
   background: #f7f7f9;
-  font-size: 8px;
+  font-size: 11px;
 }
 
 .conversation-footnote {
@@ -1007,7 +1009,7 @@ onBeforeUnmount(() => {
   border-top: 1px solid #f2f2f4;
   color: #9f9fa8;
   background: #fbfbfc;
-  font-size: 9px;
+  font-size: 12px;
 }
 
 .conversation-footnote.is-closed {
@@ -1015,8 +1017,8 @@ onBeforeUnmount(() => {
 }
 
 .conversation-footnote :deep(.el-button) {
-  height: 26px;
-  font-size: 9px;
+  height: 32px;
+  font-size: 12px;
 }
 
 .context-panel {
@@ -1030,7 +1032,7 @@ onBeforeUnmount(() => {
 
 .context-card {
   flex: 0 0 auto;
-  padding: 12px;
+  padding: 14px;
   border: 1px solid #ececf1;
   border-radius: 11px;
   background: #fff;
@@ -1049,18 +1051,18 @@ onBeforeUnmount(() => {
   align-items: center;
   gap: 4px;
   color: #606068;
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 650;
 }
 
 .context-card__head h3 :deep(.el-icon) {
   color: #a4a4ac;
-  font-size: 11px;
+  font-size: 13px;
 }
 
 .context-card__head > span {
   color: #a4a4ac;
-  font-size: 8px;
+  font-size: 11px;
 }
 
 .customer-profile {
@@ -1072,12 +1074,12 @@ onBeforeUnmount(() => {
 .customer-profile > span {
   display: grid;
   place-items: center;
-  width: 34px;
-  height: 34px;
+  width: 38px;
+  height: 38px;
   border-radius: 9px;
   color: #fff;
   background: linear-gradient(145deg, #899fd9, #5b72b4);
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
 }
 
@@ -1089,13 +1091,13 @@ onBeforeUnmount(() => {
 
 .customer-profile strong {
   color: #55555d;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
 }
 
 .customer-profile small {
   color: #a6a6ae;
-  font-size: 8px;
+  font-size: 11px;
 }
 
 .context-info {
@@ -1117,14 +1119,14 @@ onBeforeUnmount(() => {
 .context-info dt {
   flex: 0 0 auto;
   color: #a4a4ac;
-  font-size: 8px;
+  font-size: 11px;
 }
 
 .context-info dd {
   margin: 0;
   overflow: hidden;
   color: #71717a;
-  font-size: 8px;
+  font-size: 11px;
   text-align: right;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -1150,19 +1152,19 @@ onBeforeUnmount(() => {
 }
 
 .linked-tickets button:hover {
-  border-color: #f0e1dc;
-  background: #fffaf8;
+  border-color: #dbe6f5;
+  background: #f7faff;
 }
 
 .linked-ticket__icon {
   display: grid;
   place-items: center;
-  width: 25px;
-  height: 25px;
+  width: 28px;
+  height: 28px;
   border-radius: 6px;
-  color: #d83828;
-  background: #fff0ed;
-  font-size: 12px;
+  color: #2f6fe4;
+  background: #eef4ff;
+  font-size: 13px;
 }
 
 .linked-ticket__copy {
@@ -1176,7 +1178,7 @@ onBeforeUnmount(() => {
 .linked-ticket__copy strong {
   overflow: hidden;
   color: #65656e;
-  font-size: 8px;
+  font-size: 11px;
   font-weight: 500;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -1184,18 +1186,18 @@ onBeforeUnmount(() => {
 
 .linked-ticket__copy small {
   color: #acacb4;
-  font-size: 7px;
+  font-size: 11px;
 }
 
 .linked-tickets :deep(.status-tag) {
-  height: 16px;
-  padding: 0 4px;
-  font-size: 7px;
+  height: 19px;
+  padding: 0 5px;
+  font-size: 11px;
 }
 
 .linked-arrow {
   color: #c4c4cb;
-  font-size: 8px;
+  font-size: 11px;
 }
 
 .context-note {
@@ -1209,12 +1211,12 @@ onBeforeUnmount(() => {
 
 .context-note > span {
   color: #b5b5bd;
-  font-size: 11px;
+  font-size: 13px;
 }
 
 .context-note p {
   color: #aaaab2;
-  font-size: 7px;
+  font-size: 11px;
   line-height: 1.65;
 }
 
@@ -1225,20 +1227,20 @@ onBeforeUnmount(() => {
   gap: 4px;
   flex: 0 0 auto;
   width: 100%;
-  height: 30px;
+  height: 34px;
   border: 1px dashed #c8e8e6;
   border-radius: 7px;
   color: #118181;
   background: #f2fafa;
-  font-size: 8px;
+  font-size: 11px;
 }
 
 .invite-tip {
   padding: 9px 10px;
   border-radius: 7px;
-  color: #9a735d;
-  background: #fff8f3;
-  font-size: 9px;
+  color: #5f6f8f;
+  background: #f5f8ff;
+  font-size: 12px;
   line-height: 1.7;
 }
 
@@ -1252,10 +1254,15 @@ onBeforeUnmount(() => {
   border-radius: 7px;
 }
 
+.invite-search :deep(.el-input__wrapper) {
+  height: 36px;
+  border-radius: 8px;
+}
+
 .invite-search :deep(.el-button) {
-  height: 32px;
-  border-radius: 7px;
-  font-size: 10px;
+  height: 36px;
+  border-radius: 8px;
+  font-size: 13px;
 }
 
 .merchant-list {
@@ -1272,28 +1279,28 @@ onBeforeUnmount(() => {
   align-items: center;
   gap: 8px;
   width: 100%;
-  padding: 9px;
+  padding: 11px;
   border: 1px solid #f0f0f4;
-  border-radius: 8px;
+  border-radius: 9px;
   text-align: left;
   background: #fff;
   cursor: pointer;
 }
 
 .merchant-option:hover {
-  border-color: #ffd9d4;
+  border-color: #dbe6f5;
 }
 
 .merchant-option.is-selected {
-  border-color: #f4b5aa;
-  background: #fff8f6;
+  border-color: #b9d1f9;
+  background: #eef4ff;
 }
 
 .merchant-option__icon {
   display: grid;
   place-items: center;
-  width: 31px;
-  height: 31px;
+  width: 34px;
+  height: 34px;
   border-radius: 8px;
   color: #0e8583;
   background: #ebf9f8;
@@ -1310,33 +1317,33 @@ onBeforeUnmount(() => {
 
 .merchant-option__copy strong {
   color: #56565e;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 550;
 }
 
 .merchant-option__copy small {
   color: #a5a5ad;
-  font-size: 8px;
+  font-size: 11px;
 }
 
 .merchant-option__check {
   padding: 3px 5px;
   border-radius: 4px;
-  color: #d73727;
-  background: #fff0ed;
-  font-size: 8px;
+  color: #2f6fe4;
+  background: #eef4ff;
+  font-size: 11px;
 }
 
 .empty-merchant {
   padding: 30px;
   color: #aaaab2;
-  font-size: 9px;
+  font-size: 12px;
   text-align: center;
 }
 
 @media (max-width: 1180px) {
   .conversation-workspace {
-    grid-template-columns: 270px minmax(0, 1fr);
+    grid-template-columns: 300px minmax(0, 1fr);
   }
 
   .context-panel {

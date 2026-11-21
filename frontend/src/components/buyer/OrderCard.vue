@@ -144,9 +144,9 @@ function applyAfterSale(): void {
 .order-card__icon {
   display: grid;
   place-items: center;
-  flex: 0 0 31px;
-  width: 31px;
-  height: 31px;
+  flex: 0 0 34px;
+  width: 34px;
+  height: 34px;
   border-radius: 9px;
   color: #ed6c34;
   background: #fff4ed;
@@ -160,14 +160,14 @@ function applyAfterSale(): void {
   gap: 7px;
   color: #57575f;
   font-family: 'DIN Alternate', 'Bahnschrift', sans-serif;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 600;
 }
 
 .order-card__identity p {
   margin-top: 4px;
   color: #a3a3ac;
-  font-size: 9px;
+  font-size: 12px;
 }
 
 .order-card__total {
@@ -179,7 +179,7 @@ function applyAfterSale(): void {
 
 .order-card__total span {
   color: #a4a4ac;
-  font-size: 9px;
+  font-size: 12px;
 }
 
 .order-card__total strong {
@@ -208,10 +208,10 @@ function applyAfterSale(): void {
 .order-product__thumb {
   display: grid;
   place-items: center;
-  flex: 0 0 43px;
-  width: 43px;
-  height: 43px;
-  border-radius: 10px;
+  flex: 0 0 48px;
+  width: 48px;
+  height: 48px;
+  border-radius: 11px;
   color: #ed6c34;
   background:
     linear-gradient(145deg, rgba(255, 255, 255, 0.55), transparent),
@@ -230,7 +230,7 @@ function applyAfterSale(): void {
 .order-product__copy strong {
   overflow: hidden;
   color: #45454c;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 550;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -238,7 +238,7 @@ function applyAfterSale(): void {
 
 .order-product__copy span {
   color: #a1a1aa;
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .order-product__price {
@@ -251,13 +251,13 @@ function applyAfterSale(): void {
 
 .order-product__price span {
   color: #a2a2aa;
-  font-size: 9px;
+  font-size: 12px;
 }
 
 .order-product__price strong {
   color: #66666f;
   font-family: 'DIN Alternate', 'Bahnschrift', sans-serif;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 500;
 }
 
@@ -270,7 +270,7 @@ function applyAfterSale(): void {
   border-top: 1px solid #f5f5f7;
   color: #9b9ba4;
   background: #fbfbfc;
-  font-size: 9px;
+  font-size: 12px;
 }
 
 .order-card__meta span {
@@ -297,7 +297,7 @@ function applyAfterSale(): void {
   align-items: center;
   gap: 4px;
   color: #b06d4e;
-  font-size: 9px;
+  font-size: 12px;
 }
 
 .order-aftersale-hint.is-muted {
@@ -305,12 +305,13 @@ function applyAfterSale(): void {
 }
 
 .order-card__foot :deep(.el-button) {
-  height: 29px;
+  height: 34px;
+  padding: 0 16px;
   border-color: #ffd4bf;
-  border-radius: 7px;
+  border-radius: 8px;
   color: #e95510;
   background: #fff8f3;
-  font-size: 10px;
+  font-size: 13px;
 }
 
 .order-card__foot :deep(.el-button:hover) {

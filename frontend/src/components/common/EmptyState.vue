@@ -67,16 +67,16 @@ withDefaults(
 }
 
 .empty-state__title {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
   color: var(--text);
 }
 
 .empty-state__desc {
-  max-width: 280px;
-  margin-top: 7px;
-  font-size: 12px;
-  line-height: 1.7;
+  max-width: 320px;
+  margin-top: 8px;
+  font-size: 13px;
+  line-height: 1.75;
   color: var(--text-muted);
 }
 

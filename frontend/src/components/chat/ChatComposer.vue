@@ -152,20 +152,20 @@ defineExpose({ focus: () => textarea.value?.focus() })
 }
 
 .composer__hint {
-  font-size: 10px;
+  font-size: 12px;
   color: #b5b5bd;
 }
 
 .composer__send {
-  min-width: 82px;
-  height: 33px;
-  border-radius: 8px;
-  font-size: 13px;
+  min-width: 96px;
+  height: 38px;
+  border-radius: 9px;
+  font-size: 14px;
 }
 
 .send-icon {
   margin-left: 4px;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 @media (max-width: 720px) {
