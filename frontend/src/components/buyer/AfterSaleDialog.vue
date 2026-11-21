@@ -124,6 +124,7 @@ async function submit(): Promise<void> {
         <el-select
           v-model="form.order_id"
           class="full-width"
+          popper-class="after-sale-order-popper"
           :loading="loadingOrders"
           filterable
           placeholder="请选择需要售后的订单"
@@ -202,8 +203,8 @@ async function submit(): Promise<void> {
   width: 44px;
   height: 44px;
   border-radius: 12px;
-  color: #eb5a16;
-  background: #fff2e9;
+  color: #a8755f;
+  background: #f7f1ec;
   font-size: 20px;
 }
 
@@ -225,15 +226,15 @@ async function submit(): Promise<void> {
   gap: 8px;
   margin-bottom: 16px;
   padding: 12px 13px;
-  border: 1px solid #ffe3d5;
+  border: 1px solid #ead9cf;
   border-radius: 9px;
-  color: #946e59;
-  background: #fffaf6;
+  color: #7c675c;
+  background: #faf6f2;
 }
 
 .dialog-tip > span {
   margin-top: 1px;
-  color: #eb6a2b;
+  color: #a8755f;
 }
 
 .dialog-tip p {
@@ -269,8 +270,58 @@ async function submit(): Promise<void> {
 .order-option {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 3px 0;
+  gap: 9px;
+  min-height: 44px;
+  padding: 6px 0;
+}
+
+:global(.after-sale-order-popper .el-select-dropdown__item) {
+  height: auto;
+  min-height: 56px;
+  padding: 6px 12px;
+  line-height: 1.4;
+}
+
+:global(.after-sale-order-popper .el-select-dropdown__wrap) {
+  max-height: 340px;
+}
+
+:global(.after-sale-order-popper .order-option) {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 2px 0;
+}
+
+:global(.after-sale-order-popper .order-option__copy) {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+:global(.after-sale-order-popper .order-option__copy strong) {
+  overflow: hidden;
+  color: #4f4742;
+  font-size: 13px;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+:global(.after-sale-order-popper .order-option__copy small) {
+  overflow: hidden;
+  color: #9a9089;
+  font-size: 11px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+:global(.after-sale-order-popper .order-option .status-tag) {
+  flex: 0 0 auto;
+  height: 22px;
+  font-size: 11px;
 }
 
 .order-option__icon {
@@ -279,8 +330,8 @@ async function submit(): Promise<void> {
   width: 30px;
   height: 30px;
   border-radius: 7px;
-  color: #e4612a;
-  background: #fff3ec;
+  color: #a8755f;
+  background: #f7f1ec;
   font-size: 14px;
 }
 

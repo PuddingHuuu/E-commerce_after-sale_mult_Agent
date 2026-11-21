@@ -79,11 +79,11 @@ async function logout(): Promise<void> {
 
 <style scoped>
 .buyer-shell {
-  --chat-accent: #ff5c0a;
-  --chat-accent-deep: #e94a00;
+  --chat-accent: #b07d62;
+  --chat-accent-deep: #99664f;
   background:
-    radial-gradient(circle at 8% 0%, rgba(255, 127, 48, 0.08), transparent 25%),
-    #f6f7f9;
+    radial-gradient(circle at 8% 0%, rgba(176, 125, 98, 0.09), transparent 25%),
+    #f7f5f2;
 }
 
 .buyer-header {
@@ -119,8 +119,8 @@ async function logout(): Promise<void> {
   height: 36px;
   border-radius: 11px;
   color: #fff;
-  background: linear-gradient(145deg, #ff8c2f, #ff5000);
-  box-shadow: 0 7px 16px rgba(255, 80, 0, 0.2);
+  background: linear-gradient(145deg, #c9a58f, #a8755f);
+  box-shadow: 0 7px 16px rgba(168, 117, 95, 0.2);
   font-size: 18px;
 }
 
@@ -170,8 +170,8 @@ async function logout(): Promise<void> {
 }
 
 .buyer-nav__item.is-active {
-  color: #ed5100;
-  background: #fff3ec;
+  color: #99664f;
+  background: #f7f1ec;
   font-weight: 600;
 }
 
@@ -193,7 +193,7 @@ async function logout(): Promise<void> {
   height: 32px;
   border-radius: 9px;
   color: #fff;
-  background: linear-gradient(145deg, #ffa05c, #ef5a13);
+  background: linear-gradient(145deg, #c9a58f, #a8755f);
   font-size: 13px;
   font-weight: 700;
 }
@@ -229,7 +229,7 @@ async function logout(): Promise<void> {
 }
 
 .buyer-logout:hover {
-  color: #ef5a13;
+  color: #99664f;
 }
 
 .buyer-role-switch {

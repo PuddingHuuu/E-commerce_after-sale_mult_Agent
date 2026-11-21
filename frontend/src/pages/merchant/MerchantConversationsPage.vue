@@ -279,7 +279,7 @@ onBeforeUnmount(() => {
 
 .merchant-page-head h1 {
   margin-top: 4px;
-  color: #263236;
+  color: #2f3d34;
   font-size: 27px;
   font-weight: 750;
   letter-spacing: -0.03em;
@@ -287,7 +287,7 @@ onBeforeUnmount(() => {
 
 .merchant-page-head p:last-child {
   margin-top: 8px;
-  color: #8d9a9b;
+  color: #8b9c90;
   font-size: 14px;
 }
 
@@ -296,7 +296,7 @@ onBeforeUnmount(() => {
   align-items: center;
   gap: 9px;
   padding: 8px 12px;
-  border: 1px solid #dae9e8;
+  border: 1px solid #dce7df;
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.72);
 }
@@ -307,8 +307,8 @@ onBeforeUnmount(() => {
   width: 29px;
   height: 29px;
   border-radius: 8px;
-  color: #0e8583;
-  background: #eaf8f7;
+  color: #66816d;
+  background: #eef5ef;
   font-size: 14px;
 }
 
@@ -319,14 +319,14 @@ onBeforeUnmount(() => {
 }
 
 .merchant-badge strong {
-  color: #385457;
+  color: #3f5147;
   font-family: 'DIN Alternate', 'Bahnschrift', sans-serif;
   font-size: 17px;
   line-height: 1;
 }
 
 .merchant-badge small {
-  color: #9aa9aa;
+  color: #8b9c90;
   font-size: 11px;
 }
 
@@ -342,10 +342,10 @@ onBeforeUnmount(() => {
 .merchant-chat-panel {
   min-height: 0;
   overflow: hidden;
-  border: 1px solid #dde9e8;
+  border: 1px solid #dce7df;
   border-radius: 14px;
   background: #fff;
-  box-shadow: 0 8px 26px rgba(25, 60, 60, 0.05);
+  box-shadow: 0 8px 26px rgba(92, 116, 99, 0.05);
 }
 
 .merchant-list-panel {
@@ -362,7 +362,7 @@ onBeforeUnmount(() => {
 }
 
 .list-head h2 {
-  color: #3d4d4f;
+  color: #3f5147;
   font-size: 14px;
   font-weight: 650;
 }
@@ -373,8 +373,8 @@ onBeforeUnmount(() => {
   min-width: 24px;
   height: 24px;
   border-radius: 7px;
-  color: #8ca0a1;
-  background: #f2f8f8;
+  color: #8b9c90;
+  background: #f1f6f2;
   font-size: 12px;
 }
 
@@ -385,8 +385,8 @@ onBeforeUnmount(() => {
 .list-search :deep(.el-input__wrapper) {
   height: 34px;
   border-radius: 8px;
-  background: #f7fbfb;
-  box-shadow: 0 0 0 1px #e2eeee inset;
+  background: #f7faf7;
+  box-shadow: 0 0 0 1px #e0e9e2 inset;
 }
 
 .list-search :deep(.el-input__inner) {
@@ -417,13 +417,13 @@ onBeforeUnmount(() => {
 }
 
 .merchant-conversation-item:hover {
-  background: #f8fbfb;
+  background: #f7faf7;
 }
 
 .merchant-conversation-item.is-active {
-  border-color: #cfebea;
-  background: linear-gradient(135deg, #f5fcfc, #edf9f8);
-  box-shadow: inset 2px 0 0 #15908e;
+  border-color: #d5e5d9;
+  background: linear-gradient(135deg, #f7fbf8, #eff6f1);
+  box-shadow: inset 2px 0 0 #7d9b84;
 }
 
 .merchant-avatar {
@@ -468,20 +468,20 @@ onBeforeUnmount(() => {
 }
 
 .conversation-top strong {
-  color: #475357;
+  color: #45564a;
   font-size: 13px;
   font-weight: 600;
 }
 
 .conversation-top time {
   flex: 0 0 auto;
-  color: #afbabb;
+  color: #a3aea6;
   font-size: 11px;
 }
 
 .conversation-preview {
   overflow: hidden;
-  color: #9aa8a9;
+  color: #93a096;
   font-size: 12px;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -501,7 +501,7 @@ onBeforeUnmount(() => {
 
 .conversation-foot em {
   overflow: hidden;
-  color: #aab8b8;
+  color: #9aa79d;
   font-size: 11px;
   font-style: normal;
   text-overflow: ellipsis;
@@ -511,8 +511,8 @@ onBeforeUnmount(() => {
 .merchant-chat-panel {
   display: flex;
   flex-direction: column;
-  --chat-accent: #128c89;
-  --chat-accent-deep: #0a6b69;
+  --chat-accent: #7d9b84;
+  --chat-accent-deep: #67826e;
 }
 
 .merchant-chat-head {
@@ -522,8 +522,8 @@ onBeforeUnmount(() => {
   flex: 0 0 auto;
   min-height: 72px;
   padding: 12px 17px;
-  border-bottom: 1px solid #eef4f4;
-  background: linear-gradient(180deg, #fbfefe, #fff);
+  border-bottom: 1px solid #edf4ee;
+  background: linear-gradient(180deg, #fbfdfb, #fff);
 }
 
 .chat-avatar {
@@ -551,7 +551,7 @@ onBeforeUnmount(() => {
 }
 
 .merchant-chat-head h2 {
-  color: #3f4c4f;
+  color: #3f5147;
   font-size: 14px;
   font-weight: 650;
 }
@@ -562,21 +562,21 @@ onBeforeUnmount(() => {
   gap: 4px;
   margin-top: 4px;
   overflow: hidden;
-  color: #9cabac;
+  color: #93a096;
   font-size: 11px;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 .merchant-chat-head p span {
-  color: #d0dbdb;
+  color: #d6dfd8;
 }
 
 .chat-sync {
   display: flex;
   align-items: center;
   gap: 4px;
-  color: #aab8b8;
+  color: #9aa79d;
   font-size: 11px;
 }
 
@@ -608,8 +608,8 @@ onBeforeUnmount(() => {
 }
 
 .merchant-banner.is-closed {
-  color: #8d9899;
-  background: #f7f9f9;
+  color: #8b968f;
+  background: #f7faf8;
 }
 
 .merchant-chat-foot {
@@ -618,9 +618,9 @@ onBeforeUnmount(() => {
   justify-content: center;
   flex: 0 0 auto;
   padding: 12px 16px;
-  border-top: 1px solid #eef4f4;
-  color: #9caaaa;
-  background: #fbfdfd;
+  border-top: 1px solid #edf4ee;
+  color: #93a096;
+  background: #fbfdfb;
   font-size: 12px;
 }
 

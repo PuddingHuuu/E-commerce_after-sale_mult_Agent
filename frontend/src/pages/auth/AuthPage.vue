@@ -238,7 +238,11 @@ async function submitRegister(): Promise<void> {
 <template>
   <div
     class="auth-page"
-    :class="{ 'auth-page--platform': role === 'platform' }"
+    :class="{
+      'auth-page--consumer': role === 'consumer',
+      'auth-page--merchant': role === 'merchant',
+      'auth-page--platform': role === 'platform',
+    }"
     :style="{ '--role-accent': meta.accent }"
   >
     <div class="auth-switch">
@@ -455,6 +459,20 @@ async function submitRegister(): Promise<void> {
     linear-gradient(135deg, #fcfbfa 0%, #f6f7f9 58%, #f2f3f5 100%);
 }
 
+.auth-page--consumer {
+  background:
+    radial-gradient(circle at 8% 8%, rgba(176, 125, 98, 0.12), transparent 27%),
+    radial-gradient(circle at 92% 88%, rgba(196, 160, 140, 0.12), transparent 24%),
+    linear-gradient(135deg, #fbf9f7 0%, #f7f3ef 58%, #f3eeea 100%);
+}
+
+.auth-page--merchant {
+  background:
+    radial-gradient(circle at 8% 8%, rgba(125, 155, 132, 0.12), transparent 27%),
+    radial-gradient(circle at 92% 88%, rgba(159, 182, 164, 0.12), transparent 24%),
+    linear-gradient(135deg, #fbfcfa 0%, #f5f8f4 58%, #eef3ee 100%);
+}
+
 .auth-page--platform {
   background:
     radial-gradient(circle at 8% 8%, rgba(47, 111, 228, 0.12), transparent 27%),
@@ -467,6 +485,32 @@ async function submitRegister(): Promise<void> {
   z-index: 3;
   top: 22px;
   right: 24px;
+}
+
+.auth-page--consumer .auth-backdrop--one {
+  background: rgba(176, 125, 98, 0.08);
+}
+
+.auth-page--consumer .auth-backdrop--two {
+  background: rgba(196, 160, 140, 0.1);
+}
+
+.auth-page--consumer .auth-brand__mark {
+  background: linear-gradient(145deg, #c9a58f, #a8755f);
+  box-shadow: 0 8px 18px rgba(168, 117, 95, 0.22);
+}
+
+.auth-page--merchant .auth-backdrop--one {
+  background: rgba(125, 155, 132, 0.08);
+}
+
+.auth-page--merchant .auth-backdrop--two {
+  background: rgba(159, 182, 164, 0.1);
+}
+
+.auth-page--merchant .auth-brand__mark {
+  background: linear-gradient(145deg, #9db8a5, #7d9b84);
+  box-shadow: 0 8px 18px rgba(125, 155, 132, 0.22);
 }
 
 .auth-page--platform .auth-backdrop--one {

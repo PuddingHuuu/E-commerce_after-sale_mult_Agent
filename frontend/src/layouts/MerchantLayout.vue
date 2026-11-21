@@ -51,11 +51,11 @@ async function logout(): Promise<void> {
 
 <style scoped>
 .merchant-shell {
-  --chat-accent: #128c89;
-  --chat-accent-deep: #0b6f6d;
+  --chat-accent: #7d9b84;
+  --chat-accent-deep: #67826e;
   background:
-    radial-gradient(circle at 7% 0%, rgba(22, 160, 155, 0.08), transparent 26%),
-    #f4f7f7;
+    radial-gradient(circle at 7% 0%, rgba(125, 155, 132, 0.08), transparent 26%),
+    #f5f8f5;
 }
 
 .merchant-header {
@@ -63,10 +63,12 @@ async function logout(): Promise<void> {
   z-index: 20;
   top: 0;
   height: 68px;
-  border-bottom: 1px solid rgba(220, 234, 234, 0.9);
+  border-bottom: 1px solid #dce7df;
   background:
-    radial-gradient(circle at 4% -30%, rgba(29, 180, 172, 0.16), transparent 30%),
-    #0f2d30;
+    radial-gradient(circle at 4% -30%, rgba(125, 155, 132, 0.12), transparent 30%),
+    rgba(255, 255, 255, 0.94);
+  box-shadow: 0 2px 14px rgba(92, 116, 99, 0.08);
+  backdrop-filter: blur(16px);
 }
 
 .merchant-header__inner {
@@ -91,7 +93,8 @@ async function logout(): Promise<void> {
   height: 36px;
   border-radius: 11px;
   color: #fff;
-  background: linear-gradient(145deg, #3ac6bd, #0f8584);
+  background: linear-gradient(145deg, #9db8a5, #7d9b84);
+  box-shadow: 0 6px 16px rgba(125, 155, 132, 0.22);
   font-size: 16px;
 }
 
@@ -102,13 +105,13 @@ async function logout(): Promise<void> {
 }
 
 .merchant-brand__copy strong {
-  color: #f0fafa;
+  color: #263630;
   font-size: 14px;
   font-weight: 700;
 }
 
 .merchant-brand__copy small {
-  color: #5f8d8f;
+  color: #8b9c90;
   font-size: 11px;
   letter-spacing: 0.12em;
 }
@@ -126,8 +129,8 @@ async function logout(): Promise<void> {
   height: 36px;
   padding: 0 13px;
   border-radius: 9px;
-  color: #d3f0ee;
-  background: rgba(45, 179, 171, 0.18);
+  color: #55705c;
+  background: #eef5ef;
   font-size: 13px;
 }
 
@@ -141,7 +144,7 @@ async function logout(): Promise<void> {
 .merchant-store {
   max-width: 220px;
   overflow: hidden;
-  color: #b9d9d7;
+  color: #5c6f61;
   font-size: 12px;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -154,7 +157,7 @@ async function logout(): Promise<void> {
   height: 32px;
   border-radius: 9px;
   color: #fff;
-  background: linear-gradient(145deg, #3bc9c1, #117f7e);
+  background: linear-gradient(145deg, #9db8a5, #7d9b84);
   font-size: 12px;
   font-weight: 700;
 }
@@ -162,14 +165,14 @@ async function logout(): Promise<void> {
 .merchant-logout {
   margin-left: 4px;
   padding: 5px 6px;
-  color: #5f8a8c;
+  color: #8b9c90;
   background: transparent;
   font-size: 12px;
   cursor: pointer;
 }
 
 .merchant-logout:hover {
-  color: #7ee1db;
+  color: #67826e;
 }
 
 .merchant-role-switch {

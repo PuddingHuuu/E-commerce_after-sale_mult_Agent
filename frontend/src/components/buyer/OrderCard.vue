@@ -120,7 +120,7 @@ function applyAfterSale(): void {
 }
 
 .order-card:hover {
-  border-color: #f0ded5;
+  border-color: #e7d8ce;
   box-shadow: 0 11px 30px rgba(28, 29, 35, 0.06);
 }
 
@@ -131,7 +131,7 @@ function applyAfterSale(): void {
   gap: 20px;
   padding: 14px 17px;
   border-bottom: 1px solid #f3f3f6;
-  background: linear-gradient(180deg, #fffdfa, #fff);
+  background: linear-gradient(180deg, #fbf9f6, #fff);
 }
 
 .order-card__identity {
@@ -148,8 +148,8 @@ function applyAfterSale(): void {
   width: 34px;
   height: 34px;
   border-radius: 9px;
-  color: #ed6c34;
-  background: #fff4ed;
+  color: #a8755f;
+  background: #f7f1ec;
   font-size: 15px;
 }
 
@@ -183,7 +183,7 @@ function applyAfterSale(): void {
 }
 
 .order-card__total strong {
-  color: #dc3d2b;
+  color: #a85f52;
   font-family: 'DIN Alternate', 'Bahnschrift', sans-serif;
   font-size: 17px;
   font-weight: 700;
@@ -212,10 +212,10 @@ function applyAfterSale(): void {
   width: 48px;
   height: 48px;
   border-radius: 11px;
-  color: #ed6c34;
+  color: #a8755f;
   background:
     linear-gradient(145deg, rgba(255, 255, 255, 0.55), transparent),
-    #fff3eb;
+    #f7f1ec;
   font-size: 19px;
 }
 
@@ -296,7 +296,7 @@ function applyAfterSale(): void {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  color: #b06d4e;
+  color: #8c6a57;
   font-size: 12px;
 }
 
@@ -307,17 +307,17 @@ function applyAfterSale(): void {
 .order-card__foot :deep(.el-button) {
   height: 34px;
   padding: 0 16px;
-  border-color: #ffd4bf;
+  border-color: #e7d8ce;
   border-radius: 8px;
-  color: #e95510;
-  background: #fff8f3;
+  color: #99664f;
+  background: #faf6f2;
   font-size: 13px;
 }
 
 .order-card__foot :deep(.el-button:hover) {
-  border-color: #f3a679;
-  color: #d84800;
-  background: #fff2e9;
+  border-color: #c9a58f;
+  color: #80523f;
+  background: #f7f1ec;
 }
 
 @media (max-width: 660px) {

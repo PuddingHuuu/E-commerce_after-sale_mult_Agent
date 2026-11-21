@@ -191,7 +191,7 @@ onMounted(loadOrders)
   border-radius: 9px;
   font-size: 13px;
   font-weight: 600;
-  box-shadow: 0 8px 18px rgba(255, 80, 0, 0.16);
+  box-shadow: 0 8px 18px rgba(168, 117, 95, 0.18);
 }
 
 .order-tabs-card {
@@ -229,12 +229,12 @@ onMounted(loadOrders)
 }
 
 .order-tabs button:hover {
-  color: #e9530b;
+  color: #99664f;
 }
 
 .order-tabs button.is-active {
-  color: #eb5207;
-  border-bottom-color: #ff5b0d;
+  color: #99664f;
+  border-bottom-color: #b07d62;
   font-weight: 650;
 }
 
@@ -252,8 +252,8 @@ onMounted(loadOrders)
 }
 
 .order-tabs button.is-active em {
-  color: #e9530b;
-  background: #fff0e7;
+  color: #99664f;
+  background: #f7f1ec;
 }
 
 .order-search {
@@ -322,7 +322,7 @@ onMounted(loadOrders)
 
 .list-pagination :deep(.el-pagination.is-background .el-pager li.is-active) {
   color: #fff;
-  background: #ff5b0d;
+  background: #b07d62;
   box-shadow: none;
 }
 

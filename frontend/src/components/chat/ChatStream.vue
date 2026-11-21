@@ -223,7 +223,7 @@ onMounted(scrollToBottom)
 }
 
 .message-avatar.is-merchant {
-  background: linear-gradient(140deg, #43b7b2, #128a8a);
+  background: linear-gradient(140deg, #9db8a5, #7d9b84);
 }
 
 .message-avatar.is-customer {
@@ -231,7 +231,15 @@ onMounted(scrollToBottom)
 }
 
 .message-avatar.is-owner {
-  background: linear-gradient(140deg, #ff9a6b, #ee5428);
+  background: linear-gradient(140deg, #c9a58f, #a8755f);
+}
+
+.message-avatar.is-owner.is-owner-consumer {
+  background: linear-gradient(140deg, #c9a58f, #a8755f);
+}
+
+.message-avatar.is-owner.is-owner-merchant {
+  background: linear-gradient(140deg, #9db8a5, #7d9b84);
 }
 
 .message-avatar.is-owner.is-owner-platform {
@@ -278,8 +286,8 @@ onMounted(scrollToBottom)
 }
 
 .role-label.is-merchant {
-  color: #0f7676;
-  background: #e9f8f7;
+  color: #66816d;
+  background: #eef5ef;
 }
 
 .message-bubble {
@@ -299,8 +307,8 @@ onMounted(scrollToBottom)
   border-color: transparent;
   border-radius: 14px 4px 14px 14px;
   color: #fff;
-  background: linear-gradient(135deg, var(--chat-accent, #ff5c11), var(--chat-accent-deep, #e94700));
-  box-shadow: 0 8px 18px rgba(241, 75, 0, 0.14);
+  background: linear-gradient(135deg, var(--chat-accent, #b07d62), var(--chat-accent-deep, #99664f));
+  box-shadow: 0 8px 18px color-mix(in srgb, var(--chat-accent, #b07d62) 22%, transparent);
 }
 
 @media (max-width: 720px) {

@@ -240,6 +240,43 @@ img {
   --el-color-primary-dark-2: #b41d15;
 }
 
+/* 消费者端莫兰迪低饱和色调 */
+.buyer-shell,
+.auth-page--consumer,
+.after-sale-dialog,
+.after-sale-order-popper,
+.buyer-message-box {
+  --el-color-primary: #b07d62;
+  --el-color-primary-light-3: #c5a08c;
+  --el-color-primary-light-5: #d4b8a8;
+  --el-color-primary-light-7: #e4d1c6;
+  --el-color-primary-light-8: #eddfd7;
+  --el-color-primary-light-9: #f7f1ec;
+  --el-color-primary-dark-2: #99664f;
+  --brand: #b07d62;
+  --brand-dark: #99664f;
+  --brand-deep: #80523f;
+  --brand-soft: #f7f1ec;
+  --brand-soft-strong: #efe3da;
+}
+
+/* 商家端白绿低饱和色调 */
+.merchant-shell,
+.auth-page--merchant {
+  --el-color-primary: #7d9b84;
+  --el-color-primary-light-3: #9fb6a4;
+  --el-color-primary-light-5: #b6c8ba;
+  --el-color-primary-light-7: #cddbd0;
+  --el-color-primary-light-8: #dde8df;
+  --el-color-primary-light-9: #eff5f0;
+  --el-color-primary-dark-2: #67826e;
+  --brand: #7d9b84;
+  --brand-dark: #67826e;
+  --brand-deep: #526b58;
+  --brand-soft: #f1f6f2;
+  --brand-soft-strong: #e2ece4;
+}
+
 /* 平台客服端蓝白主题：shell 与 teleport 到 body 的抽屉/弹窗/下拉共用 */
 .platform-shell,
 .auth-page--platform,

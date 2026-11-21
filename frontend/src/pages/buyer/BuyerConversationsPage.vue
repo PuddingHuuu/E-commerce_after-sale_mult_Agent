@@ -164,7 +164,7 @@ onBeforeUnmount(() => {
       <div class="list-head">
         <div>
           <p class="eyebrow">HUMAN SERVICE</p>
-          <h1>人工会话</h1>
+          <h1>平台客服</h1>
         </div>
         <span class="list-count">{{ result.total }}</span>
       </div>
@@ -402,9 +402,9 @@ onBeforeUnmount(() => {
 }
 
 .conversation-item.is-active {
-  border-color: #ffddcb;
-  background: linear-gradient(135deg, #fffaf6, #fff2e9);
-  box-shadow: inset 2px 0 0 #ff5b0d;
+  border-color: #e7d8ce;
+  background: linear-gradient(135deg, #faf6f2, #f7f1ec);
+  box-shadow: inset 2px 0 0 #b07d62;
 }
 
 .conversation-avatar {
@@ -417,7 +417,7 @@ onBeforeUnmount(() => {
   margin-top: 1px;
   border-radius: 10px;
   color: #fff;
-  background: linear-gradient(145deg, #ff9565, #e6521c);
+  background: linear-gradient(145deg, #c9a58f, #a8755f);
   font-size: 15px;
 }
 
@@ -488,7 +488,7 @@ onBeforeUnmount(() => {
   align-items: center;
   gap: 2px;
   overflow: hidden;
-  color: #107c7c;
+  color: #66816d;
   font-size: 11px;
   font-style: normal;
   text-overflow: ellipsis;
@@ -508,7 +508,7 @@ onBeforeUnmount(() => {
   min-height: 72px;
   padding: 13px 18px;
   border-bottom: 1px solid #f1f1f4;
-  background: linear-gradient(180deg, #fffdfb, #fff);
+  background: linear-gradient(180deg, #fbf9f6, #fff);
 }
 
 .conversation-head__icon {
@@ -519,7 +519,7 @@ onBeforeUnmount(() => {
   height: 40px;
   border-radius: 11px;
   color: #fff;
-  background: linear-gradient(145deg, #ff9c63, #ea5520);
+  background: linear-gradient(145deg, #c9a58f, #a8755f);
   font-size: 18px;
 }
 
@@ -560,8 +560,8 @@ onBeforeUnmount(() => {
   gap: 3px;
   padding: 2px 6px;
   border-radius: 4px;
-  color: #0e7d7d;
-  background: #eaf8f7;
+  color: #66816d;
+  background: #eef5ef;
   font-size: 11px;
 }
 
@@ -622,7 +622,7 @@ onBeforeUnmount(() => {
 
 .closed-foot button {
   padding: 0;
-  color: #e85c1a;
+  color: #99664f;
   background: transparent;
   font-size: 13px;
   cursor: pointer;

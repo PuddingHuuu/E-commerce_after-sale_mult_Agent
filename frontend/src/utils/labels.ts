@@ -12,7 +12,7 @@ export const roleMeta: Record<Role, { label: string; subtitle: string; home: str
     label: '消费者',
     subtitle: '我的订单与售后',
     home: '/consumer/orders',
-    accent: '#ff5000',
+    accent: '#b07d62',
   },
   platform: {
     label: '平台客服',
@@ -24,7 +24,7 @@ export const roleMeta: Record<Role, { label: string; subtitle: string; home: str
     label: '商家',
     subtitle: '协同会话',
     home: '/merchant/conversations',
-    accent: '#138a8a',
+    accent: '#7d9b84',
   },
 }
 

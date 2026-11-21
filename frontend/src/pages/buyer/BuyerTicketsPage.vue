@@ -198,7 +198,7 @@ onBeforeUnmount(() => {
   border-radius: 9px;
   font-size: 13px;
   font-weight: 600;
-  box-shadow: 0 8px 18px rgba(255, 80, 0, 0.16);
+  box-shadow: 0 8px 18px rgba(168, 117, 95, 0.18);
 }
 
 .after-sale-summary {
@@ -291,7 +291,7 @@ onBeforeUnmount(() => {
 }
 
 .ticket-card:hover {
-  border-color: #f2ddcf;
+  border-color: #e7d8ce;
   box-shadow: 0 12px 30px rgba(28, 29, 35, 0.065);
   transform: translateY(-1px);
 }
@@ -311,8 +311,8 @@ onBeforeUnmount(() => {
   width: 36px;
   height: 36px;
   border-radius: 10px;
-  color: #ee5e16;
-  background: #fff2e9;
+  color: #a8755f;
+  background: #f7f1ec;
   font-size: 17px;
 }
 
@@ -366,16 +366,16 @@ onBeforeUnmount(() => {
 .ai-brief {
   margin-top: 10px;
   padding: 9px 11px;
-  border-left: 3px solid #ffb38e;
+  border-left: 3px solid #d8bfae;
   border-radius: 0 8px 8px 0;
-  background: #fffaf6;
+  background: #faf6f2;
 }
 
 .ai-brief > span {
   display: flex;
   align-items: center;
   gap: 4px;
-  color: #d76a35;
+  color: #99664f;
   font-size: 12px;
   font-weight: 600;
 }
@@ -384,7 +384,7 @@ onBeforeUnmount(() => {
   display: -webkit-box;
   margin-top: 4px;
   overflow: hidden;
-  color: #8e786d;
+  color: #8c7b70;
   font-size: 12px;
   line-height: 1.7;
   -webkit-box-orient: vertical;
@@ -436,7 +436,7 @@ onBeforeUnmount(() => {
 
 .ticket-pagination :deep(.el-pagination.is-background .el-pager li.is-active) {
   color: #fff;
-  background: #ff5b0d;
+  background: #b07d62;
   box-shadow: none;
 }
 
